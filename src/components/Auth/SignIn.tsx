@@ -44,14 +44,16 @@ export const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-        <div className="absolute inset-0 -z-10 bg-black opacity-50"></div>
+    <div className="relative min-h-screen bg-gray-100 flex items-center justify-center">
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black opacity-50 z-10"></div>
 
+      {/* Login Form */}
+      <div className="bg-white p-6 rounded-lg shadow-lg z-20 w-full max-w-md">
         <h1 className="text-2xl font-bold mb-4">Login</h1>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email<span className='m-1 text-md font-bold text-red-400'>*</span></label>
             <input
               type="email"
               id="email"
@@ -63,7 +65,7 @@ export const Login = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password<span className='m-1 text-md font-bold text-red-400'>*</span></label>
             <input
               type="password"
               id="password"
@@ -75,16 +77,17 @@ export const Login = () => {
             />
           </div>
           <div className="mb-4">
-            <button type="submit" className="w-full bg-blue-500 text-white px-3 py-2 rounded-md hover:bg-blue-700">
+            <button type="submit" className="w-full hover:bg-blue-500 text-white px-3 py-2 rounded-md bg-blue-700">
               Login
             </button>
           </div>
-          {errorMessage && <p className="text-red-500 text-sm">{errorMessage}</p>}
         </form>
-        <p className="mt-4 text-center text-sm text-gray-600">
+        {errorMessage && <p className="text-red-500 text-sm">{errorMessage}</p>}
+        <p className="bottom-4 left-0 right-0 text-center text-sm text-gray-600">
           Don't have an account? <Link to="/signup" className="text-blue-500 hover:underline">Sign Up</Link>
         </p>
       </div>
+
     </div>
   );
 };
