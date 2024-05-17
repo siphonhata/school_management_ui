@@ -1,9 +1,11 @@
 import React from 'react';
 import Login from './components/SignIn';
+import { HomePage } from './components/WelcomePage';
 
 function App() {
   return (
-   <Login />
+    //  <Login />
+    <HomePage />
   );
 }
 
