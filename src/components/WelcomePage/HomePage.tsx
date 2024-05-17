@@ -1,17 +1,6 @@
-const greeting = () => {
-    const time = new Date().getHours();
-    let greet = ''
-    if (time < 12) {
-        greet = "Good Morning"
-    }
-    else if (time >= 12 && time < 17) {
-        greet = "Good Afternoon"
-    }
-    else {
-        greet = "Good Evening"
-    }
-    return `${greet}, Welcome`
-}
+import { Link } from "react-router-dom"
+import { greeting } from "../../utils"
+
 
 export const HomePage = () => {
     return (
@@ -42,9 +31,9 @@ export const HomePage = () => {
                     <p className="text-2xl mb-8 font-semibold leading-8 text-white">
                         Empowering education through seamless management and innovative solutions.
                     </p>
-                    <div className="flex py-12 justify-center">
+                    <Link to="/signin"><div className="flex py-12 justify-center">
                         <p className="bg-white text-black p-2 rounded-lg hover:bg-gray-600 hover:text-white">Get Started</p>
-                    </div>
+                    </div></Link>
                 </div>
             </div>
             <div
