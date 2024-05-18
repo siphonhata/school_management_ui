@@ -1,0 +1,58 @@
+export const ProfileFormData = [
+    {
+        id: 'first_name',
+        name: 'first_name',
+        title: 'First Name',
+        type: 'text',
+        placeholder: 'Please enter your first name',
+    },
+    {
+        id: 'last_name',
+        name: 'last_name',
+        title: 'Last Name',
+        type: 'text',
+        placeholder: 'Please enter your last name',
+    },
+    {
+        id: 'id_number',
+        name: 'id_number',
+        title: 'ID Number',
+        type: 'text',
+        placeholder: 'Please enter your ID number',
+    },
+    {
+        id: 'email',
+        name: 'email',
+        title: 'Email',
+        type: 'email',
+        placeholder: 'Please enter your email',
+    },
+    {
+        id: 'phone_number',
+        name: 'phone_number',
+        title: 'Phone Number',
+        type: 'text',
+        placeholder: 'Please enter your phone number',
+    },
+    {
+        id: 'address',
+        name: 'address',
+        title: 'Address',
+        type: 'text',
+        placeholder: 'Please enter your address',
+    },
+    {
+        id: 'role',
+        name: 'role',
+        title: 'Role',
+        type: 'text',
+        placeholder: 'Please enter your role',
+    },
+    {
+        id: 'password',
+        name: 'password',
+        title: 'Password',
+        type: 'password',
+        placeholder: 'Please enter your password',
+    },
+];
