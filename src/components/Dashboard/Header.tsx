@@ -10,7 +10,7 @@ export const Header = () => {
         setIsOpen(!isOpen);
     };
     return (
-        <header className="flex justify-between items-center p-4 bg-white shadow-lg text-black">
+        <header className="flex justify-between rounded-lg items-center p-4 bg-white shadow-sm text-black">
             {/* Notification icon */}
             <div className="mr-auto">
                 {/* Insert your notification icon here */}
