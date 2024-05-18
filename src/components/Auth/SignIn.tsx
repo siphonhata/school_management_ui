@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
+  const nav = useNavigate()
   const handleSubmit = async (event: any) => {
     event.preventDefault();
 
@@ -22,7 +23,7 @@ export const Login = () => {
     }
     console.log(email, password)
     try {
-      const response = await fetch('http://192.168.0.131:8080/school_management/UserLogin', {
+      const response = await fetch('http://localhost:3001/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -32,6 +33,7 @@ export const Login = () => {
 
       if (data.success) {
         // Login successful, redirect or display success message
+        nav('/')
         console.log('Login successful');
         // Handle successful login (e.g., navigate to a different page)
       } else {
