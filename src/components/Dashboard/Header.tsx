@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/solid';
+import { ArrowRightStartOnRectangleIcon, BellIcon, ChevronDownIcon, ChevronUpIcon, UserIcon } from '@heroicons/react/24/outline';
 import { Link } from "react-router-dom";
 
 export const Header = () => {
@@ -10,24 +10,27 @@ export const Header = () => {
         setIsOpen(!isOpen);
     };
     return (
-        <header className="flex justify-between rounded-lg items-center p-4 bg-white shadow-sm text-black">
-            {/* Notification icon */}
-            <div className="mr-auto">
-                {/* Insert your notification icon here */}
+        <header className="flex justify-between rounded-lg items-center py-2 p-4 bg-white shadow-sm text-black">
+            {/* Left section with welcome message and wave icon */}
+            <div className="flex items-center mr-auto">
+                <span className="font-bold">Welcome back, Ms Mathibela!</span>
             </div>
-            {/* User avatar and dropdown */}
-            <div className="flex items-center rounded-full shadow-md p-2">
-                {/* User avatar */}
-                <img src="https://avatars.githubusercontent.com/u/92311415?v=4" alt="User Avatar" className="w-8 h-8 border rounded-full mr-2" />
-                {/* Dropdown menu */}
+            <BellIcon className="w-5 h-5" />
+            <div onClick={toggleDropdown} className="flex items-center rounded-full p-2">
+                <img src="https://avatars.githubusercontent.com/u/92311415?v=4" alt="User Avatar" className="w-10 h-10 border rounded-full mr-2" />
                 <div className="relative">
-                    <button onClick={toggleDropdown} className="flex items-center focus:outline-none">
-                        <span className="mr-2">Ms Mathibela</span>
-                        {!isOpen ? <ChevronDownIcon className="w-6 h-6" /> : <ChevronUpIcon className="w-6 h-6" />}
+                    <button className="flex items-center focus:outline-none">
+                        <div>
+                            <span className="mr-2 font-medium">Ms Mathibela</span>
+                            {/* <br /> */}
+                            <span className="block text-left text-sm">Admin</span>
+                        </div>
+                        {/* {!isOpen ? <ChevronDownIcon className="w-6 h-6" /> : <ChevronUpIcon className="w-6 h-6" />} */}
                     </button>
+
                     {isOpen && <div className="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg">
-                        <Link to={'/dashboard/profile'} className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200 w-full text-left">Admin Profile</Link>
-                        <button className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200 w-full text-left">Sign Out</button>
+                        <Link to={'/dashboard/profile'} className=" flex px-4 py-2 text-sm text-gray-800 hover:bg-gray-800 rounded-lg hover:text-white w-full text-left"><UserIcon className="h-5 w-5 mr-2" /> User Profile</Link>
+                        <button className="flex px-4 py-2 text-sm text-gray-800 hover:bg-gray-800 rounded-lg hover:text-white w-full text-left"><ArrowRightStartOnRectangleIcon className="h-5 w-5 mr-2" />Logout</button>
                     </div>}
                 </div>
             </div>
