@@ -21,13 +21,6 @@ export const ProfileFormData = [
         placeholder: 'Please enter your ID number',
     },
     {
-        id: 'email',
-        name: 'email',
-        title: 'Email',
-        type: 'email',
-        placeholder: 'Please enter your email',
-    },
-    {
         id: 'phone_number',
         name: 'phone_number',
         title: 'Phone Number',
@@ -42,11 +35,11 @@ export const ProfileFormData = [
         placeholder: 'Please enter your address',
     },
     {
-        id: 'role',
-        name: 'role',
-        title: 'Role',
-        type: 'text',
-        placeholder: 'Please enter your role',
+        id: 'email',
+        name: 'email',
+        title: 'Email',
+        type: 'email',
+        placeholder: 'Please enter your email',
     },
     {
         id: 'password',
