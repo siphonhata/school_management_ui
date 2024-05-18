@@ -1,6 +1,6 @@
 import { HomeIcon, UserGroupIcon, UserIcon, BookOpenIcon, ClipboardIcon, AcademicCapIcon, CreditCardIcon } from "@heroicons/react/24/solid";
 import { Dashboard, DashboardLayout } from "../Dashboard"
-import { ProfilePage, ProfileView } from "../Profile";
+import { ProfilePage } from "../Profile";
 
 const navItems = [
     { path: 'dashboard', name: 'Dashboard', icon: <HomeIcon className="h-5 w-5" />, Component: <h1>Home Component</h1> },

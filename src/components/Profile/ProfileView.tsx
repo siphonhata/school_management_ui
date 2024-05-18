@@ -1,4 +1,4 @@
-import { PencilIcon, PencilSquareIcon } from "@heroicons/react/24/outline"
+import { PencilSquareIcon } from "@heroicons/react/24/outline"
 
 export const ProfileView = () => {
     return (

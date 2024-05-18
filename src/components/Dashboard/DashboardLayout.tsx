@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link, Outlet, useLocation } from 'react-router-dom';
-import { Dashboard, Header } from '.';
+import { Link, useLocation } from 'react-router-dom';
+import {  Header } from '.';
 import { ArrowRightStartOnRectangleIcon, CogIcon } from '@heroicons/react/24/solid';
 
 export const DashboardLayout: React.FC<any> = ({ Outlet, navItems }) => {

@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { ArrowRightStartOnRectangleIcon, BellIcon, ChevronDownIcon, ChevronUpIcon, UserIcon } from '@heroicons/react/24/outline';
+import { ArrowRightStartOnRectangleIcon, BellIcon, UserIcon } from '@heroicons/react/24/outline';
 import { Link } from "react-router-dom";
 
 export const Header = () => {
