@@ -6,13 +6,47 @@ export const SignUp: React.FC = () => {
     const [password, setPassword] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [role, setRole] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Handle sign-up logic here
+
+        console.log("trial: ", email,
+        password,
+        firstName,
+         lastName,
+)
+        try {
+            const response = await fetch('http://localhost:3001/create_user', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email,
+                    password,
+                    first_name: firstName,
+                    last_name: lastName,
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Sign-up failed');
+            }
+
+            // Reset form fields
+            setEmail('');
+            setPassword('');
+            setFirstName('');
+            setLastName('');
+            setErrorMessage('');
+            
+            console.log("Successfully signed up")
+        } catch (error) {
+            setErrorMessage('Sign-up failed. Please try again.');
+        }
     };
+
 
     return (
         <div className="min-h-screen bg-gray-100 flex items-center justify-center">
@@ -53,19 +87,6 @@ export const SignUp: React.FC = () => {
                         />
                     </div>
 
-                    {/* Role */}
-                    <div className="mb-4">
-                        <label htmlFor="role" className="block text-sm font-medium text-gray-700">Role<span className='m-1 text-md font-bold text-red-400'>*</span></label>
-                        <input
-                            type="text"
-                            id="role"
-                            name="role"
-                            value={role}
-                            onChange={(e) => setRole(e.target.value)}
-                            required
-                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                        />
-                    </div>
 
                     {/* Email */}
                     <div className="mb-4">
