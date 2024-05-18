@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { DashboardLayout, HomePage, Login, SignUp } from './components';
+import { AdminDashboard, HomePage, Login, SignUp } from './components';
 
 
 const App: React.FC = () => {
@@ -10,7 +10,7 @@ const App: React.FC = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/signin" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/dashboard/*" element={<DashboardLayout />} />
+        <Route path="/dashboard/*" element={<AdminDashboard />} />
       </Routes>
     </Router>
   );

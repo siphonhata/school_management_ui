@@ -2,14 +2,10 @@ import React from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Dashboard, Header } from '.';
 
-export const DashboardLayout: React.FC = () => {
+export const DashboardLayout: React.FC<any> = ({ Outlet, navItems }) => {
     const location = useLocation();
 
-    const navItems = [
-        { path: 'home', name: 'Home' },
-        { path: 'profile', name: 'Profile' },
-        { path: 'settings', name: 'Settings' },
-    ];
+
 
     return (
         <div className="flex min-h-screen bg-gray-100">
@@ -17,7 +13,7 @@ export const DashboardLayout: React.FC = () => {
             <aside className="w-64 bg-gray-800 text-white flex flex-col rounded-lg m-2 mr-0">
                 <div className="p-4 text-2xl font-bold">Dashboard</div>
                 <nav className="flex-1">
-                    {navItems.map((item) => (
+                    {navItems.map((item: any) => (
                         <Link
                             key={item.path}
                             to={`/dashboard/${item.path}`}
@@ -36,7 +32,7 @@ export const DashboardLayout: React.FC = () => {
                 <div className="m-4 rounded-lg"> <Header /></div>
                 <div className="flex-1 m-2 p-6">
                     <main>
-                        <Dashboard />
+                        {Outlet}
                     </main></div>
             </div>
         </div>
