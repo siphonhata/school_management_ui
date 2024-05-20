@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -15,29 +16,16 @@ export const Login = () => {
       setErrorMessage('Please fill in all fields');
       return;
     }
-
-    // Validate email format (basic check)
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setErrorMessage('Invalid email format');
-      return;
-    }
     console.log(email, password)
     try {
-      const response = await fetch('http://localhost:3001/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        // Login successful, redirect or display success message
-        nav('/')
-        console.log('Login successful');
-        // Handle successful login (e.g., navigate to a different page)
+      const response = await axios.post('http://localhost:3001/login', { email, password });
+      if (response?.data.success) {
+        if (response.data.token) {
+          localStorage.setItem('_Ey_', response.data.token);
+          nav('/dashboard');
+        }
       } else {
-        setErrorMessage(data.message);
+        setErrorMessage(response?.data.message);
       }
     } catch (error) {
       console.error('Error logging in:', error);

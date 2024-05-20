@@ -12,3 +12,29 @@ export const greeting = () => {
     }
     return `${greet}, Welcome`
 }
+
+export const logout = () => {
+    localStorage.removeItem('_Ey_');
+    window.location.href = '/signin';
+};
+
+export const isAuthenticated = () => {
+    const token = localStorage.getItem('_Ey_');
+    if (!token) return false;
+    const decodedToken = JSON.parse(atob(token.split('.')[1]));
+
+    console.log("sipho", token)
+    const expiryTime = decodedToken.exp * 1000;
+    const expiryDate = new Date(expiryTime);
+    console.log("Expiry Date and Time:", expiryDate.toLocaleString());
+    return Date.now() < expiryTime;
+};
+
+// export const getToken = () => {
+//     const token = localStorage.getItem('_Ey_');
+//     if (token && !isTokenExpired(token)) {
+//         return token;
+//     }
+//     localStorage.removeItem('_Ey_');
+//     return null;
+// };
