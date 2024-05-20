@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { ArrowRightStartOnRectangleIcon, BellIcon, UserIcon } from '@heroicons/react/24/outline';
 import { Link } from "react-router-dom";
+import { logout } from "../../utils";
 
 export const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +31,7 @@ export const Header = () => {
 
                     {isOpen && <div className="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg">
                         <Link to={'/dashboard/profile'} className=" flex px-4 py-2 text-sm text-gray-800 hover:bg-gray-800 rounded-lg hover:text-white w-full text-left"><UserIcon className="h-5 w-5 mr-2" /> User Profile</Link>
-                        <button className="flex px-4 py-2 text-sm text-gray-800 hover:bg-gray-800 rounded-lg hover:text-white w-full text-left"><ArrowRightStartOnRectangleIcon className="h-5 w-5 mr-2" />Logout</button>
+                        <button onClick={logout} className="flex px-4 py-2 text-sm text-gray-800 hover:bg-gray-800 rounded-lg hover:text-white w-full text-left"><ArrowRightStartOnRectangleIcon className="h-5 w-5 mr-2" />Logout</button>
                     </div>}
                 </div>
             </div>

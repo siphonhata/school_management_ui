@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AdminDashboard, HomePage, Login, SignUp } from './components';
+import PrivateRoute from './ProtectedRoute';
 
 
 const App: React.FC = () => {
@@ -10,7 +11,11 @@ const App: React.FC = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/signin" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/dashboard/*" element={<AdminDashboard />} />
+        {/* <Route path="/dashboard/*" element={<AdminDashboard />} /> */}
+
+        <Route path="/dashboard" element={<PrivateRoute />}>
+          <Route path="" element={<AdminDashboard />} />
+        </Route>
       </Routes>
     </Router>
   );
