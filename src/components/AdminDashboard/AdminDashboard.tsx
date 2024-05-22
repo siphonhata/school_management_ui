@@ -17,12 +17,6 @@ const navItems = [
 
 export const AdminDashboard = () => {
     return (
-        <Routes>
-            <Route path="/" element={<DashboardLayout navItems={navItems} />}>
-                {navItems.map((item) => (
-                    <Route key={item.path} path={item.path} element={item.Component} />
-                ))}
-            </Route>
-        </Routes>
-    );
+        <DashboardLayout Outlet={<Dashboard navItems={navItems} />} navItems={navItems} />
+    )
 }
