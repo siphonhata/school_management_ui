@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { ProfileFormData } from './ProfileStaticData';
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
+import { api_url } from '../../App';
+import axios from 'axios';
 
 export const ProfilePage = () => {
     const [isOpen, setIsOpen] = useState(true);
@@ -21,10 +23,14 @@ export const ProfilePage = () => {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = async (e: any) => {
         e.preventDefault();
-        // Add your form submission logic here
-        console.log("collected data", formData);
+        try {
+            const response = await axios.put(`${api_url}/update`, formData);
+            console.log("Profile updated successfully:", response.data);
+        } catch (error) {
+            console.error("Error updating profile:", error);
+        }
     };
 
     return (
@@ -58,7 +64,7 @@ export const ProfilePage = () => {
                                     <textarea
                                         className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                                         id="bio"
-                                        name="formData.name"
+                                        name="bio"
                                         placeholder="Tell us a little about yourself..."
                                         onChange={handleChange}
                                     />
