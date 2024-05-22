@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AdminDashboard, HomePage, Login, SignUp } from './components';
 import PrivateRoute from './ProtectedRoute';
+import ImageUpload from './components/testFile';
 
 
 const App: React.FC = () => {
@@ -10,6 +11,7 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/signin" element={<Login />} />
+        <Route path="/test" element={<ImageUpload />} />
         <Route path="/signup" element={<SignUp />} />
         {/* <Route path="/dashboard/*" element={<AdminDashboard />} /> */}
 
