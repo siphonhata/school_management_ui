@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AdminDashboard, HomePage, Login, SignUp } from './components';
 import PrivateRoute from './ProtectedRoute';
 import ImageUpload from './components/testFile';
-
+export const api_url = process.env.REACT_APP_API_URL
 
 const App: React.FC = () => {
   return (

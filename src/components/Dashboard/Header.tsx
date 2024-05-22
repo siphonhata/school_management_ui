@@ -7,12 +7,14 @@ import {
 import { Link } from "react-router-dom";
 import { logout } from "../../utils";
 import axios from "axios";
+import { api_url } from "../../App";
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState<any>({});
   const [image, setImage] = useState<any>("");
 
+  // const url = process.env.REACT_APP_API_URL
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
@@ -20,7 +22,8 @@ export const Header = () => {
   useEffect(() => {
     const fetchImage = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/getuser");
+        //@ts-ignore
+        const response = await axios.get(`${api_url}/getuser`);
         console.log(response.data);
         if (response.data.success) {
           setUser(response.data.user);
@@ -40,7 +43,7 @@ export const Header = () => {
       <div className="flex items-center mr-auto">
         {/* <pre>{JSON.stringify(user, null, 2)}</pre> */}
         <span className="font-bold text-2xl">
-          {user == null ? `Welcome back, ${user.gender === "Male" ? "Mr" : "Ms"} ${user.last_name}!` :
+          {user.first_name != null ? `Welcome back, ${user.gender === "Male" ? "Mr" : "Ms"} ${user.last_name}!` :
             <>
               <p>Welcome</p>
               <p className="text-red-500 text-sm">Please Complete your profile</p>
