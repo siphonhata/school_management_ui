@@ -1,1 +1,2 @@
-export * from './AdminDashboard'
+export * from './AdminDashboard';
+export * from './Students';
