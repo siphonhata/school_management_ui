@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { api_url } from '../../App';
 
 export const Login = () => {
   const [email, setEmail] = useState('');
@@ -18,7 +19,8 @@ export const Login = () => {
     }
     console.log(email, password)
     try {
-      const response = await axios.post('http://localhost:3001/login', { email, password });
+      //@ts-ignore
+      const response = await axios.post(`${api_url}/login`, { email, password });
       if (response?.data.success) {
         if (response.data.token) {
           localStorage.setItem('_Ey_', response.data.token);

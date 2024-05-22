@@ -1,5 +1,7 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { api_url } from '../../App';
 
 export const SignUp: React.FC = () => {
     const [email, setEmail] = useState('');
@@ -12,12 +14,13 @@ export const SignUp: React.FC = () => {
         e.preventDefault();
 
         console.log("trial: ", email,
-        password,
-        firstName,
-         lastName,
-)
+            password,
+            firstName,
+            lastName,
+        )
         try {
-            const response = await fetch('http://localhost:3001/create_user', {
+            //@ts-ignore
+            const response = await axios.post(`${api_url}/create_user`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -30,9 +33,9 @@ export const SignUp: React.FC = () => {
                 }),
             });
 
-            if (!response.ok) {
-                throw new Error('Sign-up failed');
-            }
+            // if (!response.ok) {
+            //     throw new Error('Sign-up failed');
+            // }
 
             // Reset form fields
             setEmail('');
@@ -40,7 +43,7 @@ export const SignUp: React.FC = () => {
             setFirstName('');
             setLastName('');
             setErrorMessage('');
-            
+
             console.log("Successfully signed up")
         } catch (error) {
             setErrorMessage('Sign-up failed. Please try again.');

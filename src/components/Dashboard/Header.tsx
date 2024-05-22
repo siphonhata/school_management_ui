@@ -7,12 +7,14 @@ import {
 import { Link } from "react-router-dom";
 import { logout } from "../../utils";
 import axios from "axios";
+import { api_url } from "../../App";
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState<any>({});
   const [image, setImage] = useState<any>("");
 
+  // const url = process.env.REACT_APP_API_URL
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
@@ -20,7 +22,8 @@ export const Header = () => {
   useEffect(() => {
     const fetchImage = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/getuser");
+        //@ts-ignore
+        const response = await axios.get(`${api_url}/getuser`);
         console.log(response.data);
         if (response.data.success) {
           setUser(response.data.user);
@@ -39,8 +42,13 @@ export const Header = () => {
       {/* Left section with welcome message and wave icon */}
       <div className="flex items-center mr-auto">
         {/* <pre>{JSON.stringify(user, null, 2)}</pre> */}
-        <span className="font-bold">
-          Welcome back, {user.gender === "Male" ? "Mr" : "Ms"} {user.last_name}!
+        <span className="font-bold text-2xl">
+          {user.first_name != null ? `Welcome back, ${user.gender === "Male" ? "Mr" : "Ms"} ${user.last_name}!` :
+            <>
+              <p>Welcome</p>
+              <p className="text-red-500 text-sm">Please Complete your profile</p>
+            </>
+          }
         </span>
       </div>
       <BellIcon className="w-5 h-5" />
@@ -55,7 +63,11 @@ export const Header = () => {
             className="w-10 h-10 border rounded-full mr-2"
           />
         ) : (
-          <p>No profile picture</p>
+          <img
+            src={'/profile.jpg'}
+            alt="User Avatar"
+            className="w-10 h-10 border rounded-full mr-2"
+          />
         )}
 
         <div className="relative">
@@ -67,7 +79,6 @@ export const Header = () => {
               {/* <br /> */}
               <span className="block text-left text-sm">{user.role}</span>
             </div>
-            {/* {!isOpen ? <ChevronDownIcon className="w-6 h-6" /> : <ChevronUpIcon className="w-6 h-6" />} */}
           </button>
 
           {isOpen && (
