@@ -5,6 +5,7 @@ import { api_url } from '../../App';
 import axios from 'axios';
 import { ButtonLoader } from '../Common';
 import { useNavigate } from 'react-router-dom';
+import { UpdateProfilePicture } from '.';
 
 export const ProfilePage = () => {
     const [isOpen, setIsOpen] = useState(true);
@@ -47,7 +48,9 @@ export const ProfilePage = () => {
             <div className='flex justify-between bg-gray-800 p-4 text-white text-lg font-bold mb-4 rounded-lg'><p>Edit Profile Info</p>
                 {isOpen ? <ChevronDownIcon className="w-6 h-6" onClick={() => setIsOpen(!isOpen)} /> : <ChevronUpIcon className="w-6 h-6" onClick={() => setIsOpen(!isOpen)} />}
             </div>
-            {isOpen && <form onSubmit={handleSubmit}>
+            {isOpen && <>
+            <form onSubmit={handleSubmit}>
+            <UpdateProfilePicture />
                 <table className="w-full">
                     <tbody>
                         <tr>
@@ -107,7 +110,7 @@ export const ProfilePage = () => {
                         Submit
                     </span>
                 </button>
-            </form>}
+            </form></>}
         </div>
     );
 };
