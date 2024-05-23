@@ -3,9 +3,13 @@ import { ProfileFormData } from './ProfileStaticData';
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
 import { api_url } from '../../App';
 import axios from 'axios';
+import { ButtonLoader } from '../Common';
+import { useNavigate } from 'react-router-dom';
 
 export const ProfilePage = () => {
     const [isOpen, setIsOpen] = useState(true);
+    const [loading, setLoading] = useState(false)
+    const nav = useNavigate()
 
     const [formData, setFormData] = useState({
         first_name: '',
@@ -25,9 +29,14 @@ export const ProfilePage = () => {
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
+        setLoading(true);
         try {
             const response = await axios.put(`${api_url}/update`, formData);
-            console.log("Profile updated successfully:", response.data);
+            if (response.data.success) {
+                setLoading(false);
+                setIsOpen(!isOpen)
+                nav("/dashboard/profile")
+            }
         } catch (error) {
             console.error("Error updating profile:", error);
         }
@@ -92,7 +101,12 @@ export const ProfilePage = () => {
                         </tr>
                     </tbody>
                 </table>
-                <button className='float-right border-2 border-gray-800 bg-gray-800 mx-3 text-white font-bold p-2 rounded-lg hover:bg-white hover:text-gray-800' type="submit">Submit</button>
+                <button className='float-right flex border-2 border-gray-800 bg-gray-800 mx-3 text-white font-bold p-2 rounded-lg hover:bg-white hover:text-gray-800 relative' type="submit">
+                    <span className="flex items-center">
+                        {loading && <div className='flex justify-center items-center text-center'><ButtonLoader /></div>}
+                        Submit
+                    </span>
+                </button>
             </form>}
         </div>
     );
