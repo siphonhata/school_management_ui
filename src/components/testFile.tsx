@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { api_url } from '../App';
 
 const ImageUpload: React.FC = () => {
     const [file, setFile] = useState<File | null>(null);
@@ -27,7 +28,7 @@ const ImageUpload: React.FC = () => {
 
     const saveToDatabase = async (base64String: string) => {
         try {
-            const response = await axios.post('http://localhost:3001/upload', { image: base64String });
+            const response = await axios.post(`${api_url}/upload`, { image: base64String });
             setImageId(response.data.id);
         } catch (error) {
             console.error('Error saving image to DB', error);
