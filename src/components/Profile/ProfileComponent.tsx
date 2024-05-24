@@ -3,7 +3,7 @@ import { ProfileFormData } from './ProfileStaticData';
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
 import { api_url } from '../../App';
 import axios from 'axios';
-import { ButtonLoader, useFetchUser } from '../Common';
+import { ButtonLoader, ModalComponent, PlaceHolder, useFetchUser } from '../Common';
 import { useNavigate } from 'react-router-dom';
 import { UpdateProfilePicture } from '.';
 
@@ -123,6 +123,8 @@ export const ProfilePage = () => {
                         </span>
                     </button>
                 </form></>}
+
+            {!isOpen && <ModalComponent modalContent={<PlaceHolder imageSrc={"/correct.png"} description={"Successfully updated Profile"} size={"h-24 w-24"} />} />}
         </div>
     );
 };
