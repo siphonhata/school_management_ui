@@ -43,7 +43,7 @@ export const Header = () => {
       <div className="flex items-center mr-auto">
         {/* <pre>{JSON.stringify(user, null, 2)}</pre> */}
         <span className="font-bold text-2xl">
-          {user.first_name != null ? `Welcome back, ${user.gender === "Male" ? "Mr" : "Ms"} ${user.last_name}!` :
+          {user.id_number != null ? `Welcome back, ${user.gender === "Male" ? "Mr" : "Ms"} ${user.last_name}!` :
             <>
               <p>Welcome</p>
               <p className="text-red-500 text-sm">Please Complete your profile</p>
