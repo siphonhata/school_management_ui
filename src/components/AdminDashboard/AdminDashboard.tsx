@@ -7,9 +7,10 @@ import { AttendanceComponent } from "./Attendance";
 import { CourseComponent } from "./Courses";
 import { ExamComponent } from "./Exam";
 import { PaymentComponent } from "./Payment";
+import { HomeAdmin } from "./Home";
 
 const navItems = [
-    { path: 'dashboard', name: 'Dashboard', icon: <HomeIcon className="h-5 w-5" />, Component: <h1>Home Component</h1> },
+    { path: 'dashboard', name: 'Dashboard', icon: <HomeIcon className="h-5 w-5" />, Component: <><HomeAdmin /> </> },
     { path: 'profile', name: 'Profile', icon: <CreditCardIcon className="h-5 w-5" />, Component: <><ProfilePage /> </> },
     { path: 'students', name: 'Students', icon: <UserGroupIcon className="h-5 w-5" />, Component: <><StudentsComponent /></> },
     { path: 'teachers', name: 'Teachers', icon: <UserIcon className="h-5 w-5" />, Component: <><TeachersComponent /></> },
