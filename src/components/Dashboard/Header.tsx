@@ -8,34 +8,15 @@ import { Link } from "react-router-dom";
 import { logout } from "../../utils";
 import axios from "axios";
 import { api_url } from "../../App";
+import { useFetchUser } from "../Common";
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [user, setUser] = useState<any>({});
-  const [image, setImage] = useState<any>("");
-
+  const { user, image, loading, error } = useFetchUser();
   // const url = process.env.REACT_APP_API_URL
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
-
-  useEffect(() => {
-    const fetchImage = async () => {
-      try {
-        //@ts-ignore
-        const response = await axios.get(`${api_url}/getuser`);
-        console.log(response.data);
-        if (response.data.success) {
-          setUser(response.data.user);
-          setImage(response.data.photo);
-        }
-      } catch (error) {
-        console.error("Error fetching user image", error);
-      }
-    };
-
-    fetchImage();
-  }, []);
 
   return (
     <header className="flex justify-between rounded-lg items-center py-2 p-4 bg-white shadow-sm text-black">
@@ -43,7 +24,7 @@ export const Header = () => {
       <div className="flex items-center mr-auto">
         {/* <pre>{JSON.stringify(user, null, 2)}</pre> */}
         <span className="font-bold text-2xl">
-          {user.id_number != null ? `Welcome back, ${user.gender === "Male" ? "Mr" : "Ms"} ${user.last_name}!` :
+          {user?.id_number != null ? `Welcome back, ${user?.gender === "Male" ? "Mr" : "Ms"} ${user?.last_name}!` :
             <>
               <p>Welcome</p>
               <p className="text-red-500 text-sm">Please Complete your profile</p>
@@ -74,10 +55,10 @@ export const Header = () => {
           <button className="flex items-center focus:outline-none">
             <div>
               <span className="mr-2 font-medium">
-                {user.first_name} {user.last_name}
+                {user?.first_name} {user?.last_name}
               </span>
               {/* <br /> */}
-              <span className="block text-left text-sm">{user.role}</span>
+              <span className="block text-left text-sm">{user?.role}</span>
             </div>
           </button>
 
