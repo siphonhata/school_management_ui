@@ -43,6 +43,7 @@ export const ProfilePage = () => {
         }
     };
 
+    
     return (
         <div className='mt-4 '>
             <div className='flex justify-between bg-gray-800 p-4 text-white text-lg font-bold mb-4 rounded-lg'><p>Edit Profile Info</p>

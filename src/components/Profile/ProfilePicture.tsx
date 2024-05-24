@@ -1,22 +1,39 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { FaCamera } from 'react-icons/fa';
+import { api_url } from '../../App';
 
-export const UpdateProfilePicture = () => {
-    const [profilePicture, setProfilePicture] = useState(null);
+export const UpdateProfilePicture = ({ image }: any) => {
+    const [profilePicture, setProfilePicture] = useState<File | null>(null);
 
-    // Function to handle file input change
-    const handleFileChange = (event: any) => {
-        const file = event.target.files[0];
-        // You can perform validation here if needed
-        setProfilePicture(file);
+    const handleSubmit = async (base64String: string) => {
+        try {
+            const response = await axios.post(`${api_url}/upload`, { image: base64String });
+            if (response.data.success) {
+                console.log("Image uploaded")
+            }
+        } catch (error) {
+            console.error('Error saving image to DB', error);
+        }
     };
 
-    // Function to handle profile picture submission
-    const handleSubmit = () => {
-        // You can handle the submission logic here, e.g., send the file to the server
-        console.log("Profile picture submitted:", profilePicture);
-        // Reset the profile picture state after submission
-        setProfilePicture(null);
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files.length > 0) {
+            setProfilePicture(e.target.files[0]);
+        }
+    };
+    const handleUpload = async () => {
+        if (profilePicture) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                const base64String = reader.result?.toString().split(',')[1];
+                if (base64String) {
+                    handleSubmit(base64String);
+                }
+            };
+            reader.readAsDataURL(profilePicture);
+        }
     };
 
     return (
