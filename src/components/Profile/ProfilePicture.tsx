@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaCamera } from 'react-icons/fa';
 
 export const UpdateProfilePicture = () => {
     const [profilePicture, setProfilePicture] = useState(null);
@@ -22,14 +23,30 @@ export const UpdateProfilePicture = () => {
         <div className="flex flex-col items-center">
             <h2 className="text-xl font-bold mb-4">Update Profile Picture</h2>
             {profilePicture ? (
-                <div className="mb-4">
-                    <img src={URL.createObjectURL(profilePicture)} alt="Profile" className="w-40 h-40 rounded-full mb-2" />
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleSubmit}>Update Picture</button>
+                <div className="relative mb-4">
+                    <img
+                        src={URL.createObjectURL(profilePicture)}
+                        alt="Profile"
+                        className="w-full h-40 object-cover rounded-full mb-2"
+                    />
+                    <FaCamera className="text-gray-600 text-3xl absolute bottom-2 right-2" />
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleFileChange}
+                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                    />
                 </div>
             ) : (
-                <div className="mb-4">
-                    <input type="file" accept="image/*" onChange={handleFileChange} className="mb-2" />
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleSubmit}>Upload Picture</button>
+                <div className="relative mb-4">
+                    <img src={'/profile.jpg'} alt='' className='w-full h-40 object-cover rounded-full mb-2' />
+                    <FaCamera className="text-gray-600 text-3xl absolute bottom-2 right-2" />
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleFileChange}
+                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                    />
                 </div>
             )}
         </div>
