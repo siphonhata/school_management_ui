@@ -17,8 +17,8 @@ export const SignUp: React.FC = () => {
       const response = await axios.post(`${api_url}/create_user`, {
         email,
         password,
-        first_name: firstName,
-        last_name: lastName,
+        firstName: firstName,
+        lastName: lastName,
       });
 
       if (response?.data.success) {
