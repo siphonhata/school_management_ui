@@ -1,3 +1,6 @@
 export * from './SignIn'
 export * from './CreateUser'
 export * from './RegisterSchool'
+export * from './Auth'
+export * from './VerifyAccount'
+export * from './ForgotPassword'
