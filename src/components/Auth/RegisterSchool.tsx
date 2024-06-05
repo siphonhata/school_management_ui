@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { api_url } from "../../App";
 
 export const RegisterSchoolForm = () => {
     const [formData, setFormData] = useState({
@@ -9,8 +11,11 @@ export const RegisterSchoolForm = () => {
         websiteLink: '',
         missionStatement: '',
         representativeName: '',
+        representativeLastName: '',
         representativeEmail: '',
-        representativePhoneNumber: ''
+        representativePhoneNumber: '',
+        password: '',
+
     });
 
     const handleChange = (e: any) => {
@@ -19,12 +24,22 @@ export const RegisterSchoolForm = () => {
             ...formData,
             [name]: value
         });
-    };
+    }; 
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = async (e: any) => {
         e.preventDefault();
-        // Add logic to handle form submission
+        try
+        {
         console.log(formData);
+        // Add logic to handle form submission
+        const response = await axios.post(`${api_url}/registerAccount`, formData);
+        console.log(response.data)
+        }
+        catch(error)
+        {
+            console.log(error); 
+        }
+        
     };
 
     return (
@@ -43,7 +58,6 @@ export const RegisterSchoolForm = () => {
                         <div className='flex gap-4'>
                             <div className="mb-4 w-full">
                                 <label
-                                    htmlFor="password"
                                     className="block text-sm font-medium text-gray-700"
                                 >
                                     Institute Name
@@ -58,7 +72,7 @@ export const RegisterSchoolForm = () => {
                                 /></div>
                             <div className="mb-4 w-full">
                                 <label
-                                    htmlFor="password"
+                        
                                     className="block text-sm font-medium text-gray-700"
                                 >
                                     Institute Email
@@ -74,7 +88,6 @@ export const RegisterSchoolForm = () => {
                         <div className="flex gap-4">
                             <div className="mb-4 w-full">
                                 <label
-                                    htmlFor="password"
                                     className="block text-sm font-medium text-gray-700"
                                 >
                                     Institute Phone Number
@@ -89,7 +102,7 @@ export const RegisterSchoolForm = () => {
                                 /></div>
                             <div className="mb-4 w-full">
                                 <label
-                                    htmlFor="password"
+                                    
                                     className="block text-sm font-medium text-gray-700"
                                 >
                                     Institute Webste Link
@@ -103,7 +116,6 @@ export const RegisterSchoolForm = () => {
                                 /></div></div>
                         <div className="mb-4">
                             <label
-                                htmlFor="password"
                                 className="block text-sm font-medium text-gray-700"
                             >
                                 Mission Statement
@@ -119,7 +131,6 @@ export const RegisterSchoolForm = () => {
                         <h2 className="text-lg font-semibold mb-4 text-gray-900">Representative Information</h2>
                         <div className="mb-4">
                             <label
-                                htmlFor="password"
                                 className="block text-sm font-medium text-gray-700"
                             >
                                 Representative Name
@@ -132,9 +143,24 @@ export const RegisterSchoolForm = () => {
                                 placeholder="Representative Name"
                                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                             /></div>
+
+<div className="mb-4">
+                            <label
+                                className="block text-sm font-medium text-gray-700"
+                            >
+                                Representative Last Name
+                                <span className="m-1 text-md font-bold text-red-400">*</span>
+                            </label><input
+                                type="text"
+                                name="representativeLastName"
+                                value={formData.representativeLastName}
+                                onChange={handleChange}
+                                placeholder="Representative Last Name"
+                                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                            /></div>
+
                         <div className="mb-4">
                             <label
-                                htmlFor="password"
                                 className="block text-sm font-medium text-gray-700"
                             >
                                 Representative Email
@@ -149,7 +175,6 @@ export const RegisterSchoolForm = () => {
                             /></div>
                         <div className="mb-4">
                             <label
-                                htmlFor="password"
                                 className="block text-sm font-medium text-gray-700"
                             >
                                 Representative Phone Number
@@ -165,7 +190,7 @@ export const RegisterSchoolForm = () => {
                         {/* Password */}
                         <div className="mb-4">
                             <label
-                                htmlFor="password"
+                                
                                 className="block text-sm font-medium text-gray-700"
                             >
                                 Password
@@ -175,15 +200,14 @@ export const RegisterSchoolForm = () => {
                                 type="password"
                                 id="password"
                                 name="password"
-                                placeholder='*****'
+                                placeholder='********'
                                 required
                                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                             />
                         </div>
-                        {/* Password */}
+                        {/* Confirm Password */}
                         <div className="mb-4">
                             <label
-                                htmlFor="password"
                                 className="block text-sm font-medium text-gray-700"
                             >
                                 Confirm Password
@@ -193,7 +217,7 @@ export const RegisterSchoolForm = () => {
                                 type="password"
                                 id="password"
                                 name="password"
-                                placeholder='*****'
+                                placeholder='********'
                                 required
                                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                             />
