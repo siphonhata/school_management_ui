@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AdminDashboard, HomePage, Login, RegisterSchoolForm, SignUp } from './components';
+import { AdminDashboard, AuthLayout, HomePage, Login, RegisterSchoolForm, SignUp } from './components';
 import PrivateRoute from './ProtectedRoute';
 import ImageUpload from './components/testFile';
 export const api_url = process.env.REACT_APP_API_URL
@@ -10,10 +10,11 @@ const App: React.FC = () => {
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/signin" element={<Login />} />
         <Route path="/test" element={<ImageUpload />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/register" element={<RegisterSchoolForm />} />
+        <Route path="/signin" element={<AuthLayout />} />
+        <Route path="/register" element={<AuthLayout />} />
+        <Route path="/verify-account" element={<AuthLayout />} />
+        <Route path="/forgot-password" element={<AuthLayout />} />
 
         <Route element={<PrivateRoute />}>
           <Route path="/dashboard/*" element={<AdminDashboard />} />
