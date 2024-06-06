@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { api_url } from "../../App";
 
@@ -15,9 +15,13 @@ export const RegisterSchoolForm = () => {
         representativeEmail: '',
         representativePhoneNumber: '',
         password: '',
+        confirmPassword: '',
 
     });
 
+    const [errorMessage, setErrorMessage] = useState<string>('');
+    const navigate = useNavigate();
+    
     const handleChange = (e: any) => {
         const { name, value } = e.target;
         setFormData({
@@ -28,14 +32,27 @@ export const RegisterSchoolForm = () => {
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
+        setErrorMessage('');
+
+        if (formData.password !== formData.confirmPassword) {
+            setErrorMessage('Passwords do not match.');
+            return;
+        }
+
         try {
-            console.log(formData);
             // Add logic to handle form submission
             const response = await axios.post(`${api_url}/registerAccount`, formData);
             console.log(response.data)
+            if (response.data.success) {
+                navigate(`/verify-account?email=${formData.representativeEmail}`);
+            }
+            else {
+                setErrorMessage(response.data.message || 'Registration failed. Please try again.');
+            }
         }
         catch (error) {
-            console.log(error);
+            console.error(error);
+            setErrorMessage('Registration failed. Please try again.');
         }
 
     };
@@ -44,6 +61,11 @@ export const RegisterSchoolForm = () => {
 
         <div className="shadow-lg px-8 py-4">
             <h2 className="text-2xl font-bold mb-8 text-center">Register Your School</h2>
+            {errorMessage && (
+                <div className="mb-4 text-red-500 text-center">
+                    {errorMessage}
+                </div>
+            )}
             <form className="w-full" onSubmit={handleSubmit}>
                 <div className='flex gap-4'>
                     <div className="mb-4 w-full">
@@ -192,6 +214,8 @@ export const RegisterSchoolForm = () => {
                         name="password"
                         placeholder='********'
                         required
+                        value={formData.password}
+                        onChange={handleChange}
                         className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                     />
                 </div>
@@ -205,8 +229,10 @@ export const RegisterSchoolForm = () => {
                     </label>
                     <input
                         type="password"
-                        id="password"
-                        name="password"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        value={formData.confirmPassword}
+                        onChange={handleChange}
                         placeholder='********'
                         required
                         className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
