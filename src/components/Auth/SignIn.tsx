@@ -28,7 +28,7 @@ export const Login = () => {
       if (response?.data.success) {
         if (response.data.token) {
           localStorage.setItem("_Ey_", response.data.token);
-          nav("/dashboard");
+          nav(`/dashboard?schoolID=${response.data.user.schoolId}`);
         }
       } else {
         setErrorMessage(response?.data.message);
