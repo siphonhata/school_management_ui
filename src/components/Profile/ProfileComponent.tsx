@@ -18,19 +18,19 @@ export const ProfilePage = () => {
     useEffect(() => {
         if (user) {
             setFormData({
-                first_name: user.first_name,
-                last_name: user.last_name,
-                id_number: user.id_number,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                idNumber: user.idNumber,
                 email: user.email,
-                phone_number: user.phone_number,
+                phoneNumber: user.phoneNumber,
                 address: user.address,
                 bio: user.bio,
                 password: user.password
             });
         }
     }, [user]);
-
-    console.log("askies", user, formData)
+//console.log("USER", user)
+   
     const handleChange = (e: any) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
@@ -39,8 +39,9 @@ export const ProfilePage = () => {
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         setLoading(true);
-        console.log("if i start", formData)
+       
         try {
+            console.log("formData", formData)
             const response = await axios.put(`${api_url}/update`, formData);
             if (response.data.success) {
                 setLoading(false);
