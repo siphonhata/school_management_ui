@@ -23,10 +23,9 @@ export const isAuthenticated = () => {
     if (!token) return false;
     const decodedToken = JSON.parse(atob(token.split('.')[1]));
 
-    console.log("sipho", token)
+   
     const expiryTime = decodedToken.exp * 1000;
-    const expiryDate = new Date(expiryTime);
-    console.log("Expiry Date and Time:", expiryDate.toLocaleString());
+    
     return Date.now() < expiryTime;
 };
 

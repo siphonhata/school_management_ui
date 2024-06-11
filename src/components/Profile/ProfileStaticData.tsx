@@ -41,11 +41,11 @@ export const ProfileFormData = [
         type: 'email',
         placeholder: 'Please enter your email',
     },
-    {
-        id: 'password',
-        name: 'password',
-        title: 'Password',
-        type: 'password',
-        placeholder: 'Please enter your password',
-    },
+    // {
+    //     id: 'password',
+    //     name: 'password',
+    //     title: 'Password',
+    //     type: 'password',
+    //     placeholder: 'Please enter your password',
+    // },
 ];
