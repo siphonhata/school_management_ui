@@ -1,49 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom'; 
 import {  Header } from '.';
 import { ArrowRightStartOnRectangleIcon, CogIcon } from '@heroicons/react/24/solid';
-import { api_url } from '../../App';
-import axios from 'axios';
+import { useFetchUser } from '../Common';
 
 export const DashboardLayout: React.FC<any> = ({ Outlet, navItems }) => {
     const location = useLocation();
-    const searchParams = new URLSearchParams(location.search);
-    const schoolID = searchParams.get('schoolID');
-    const [schoolName, setSchoolName] = useState<string | null>(null);
     
-    useEffect(() => {
-        const fetchSchoolName = async () => {
-            
-            try {
-                if (schoolID != null) {
-                    const response = await axios.get(`${api_url}/getSchoolByID`, {
-                        params: {
-                          id: schoolID
-                        }
-                      });
-                    
-                   
-                    const data = response.data;
-                    if (data.success) {
-                        setSchoolName(data.school.name);
-                    } else {
-                        console.log(data.message); // Handle error
-                    }
-                }
-            } catch (error) {
-                console.error('Error fetching school name:', error);
-            }
-        };
+   const {user, loading} = useFetchUser();
 
-        fetchSchoolName();
-    }, [schoolID]);
 
+   console.log("user =>", user)
    
     return (
         <div className="flex min-h-screen bg-gray-100">
             {/* Side Navigation */}
             <aside className="w-64 bg-gray-800 text-white flex flex-col rounded-lg m-2 mr-0 fixed top-0 bottom-0">
-                <div className="p-4 text-2xl font-bold">{schoolName ? schoolName : "Loading..."}</div>
+                <div className="p-4 text-2xl font-bold">{loading ? "Loading..." : user.school.name}</div>
                 <hr className="border-gray-700 mx-4 mb-2" />
                 <nav className="flex-1 overflow-y-auto">
                     {navItems.map((item: any) => (

@@ -80,6 +80,7 @@ export const VerifyAccount = () => {
         <Link to="/resend-otp" className="text-gray-900 hover:underline">
             Resend OTP
         </Link>
+        {/* Change Link to button */}
     </p>
             </div >
         </div >

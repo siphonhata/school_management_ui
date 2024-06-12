@@ -12,7 +12,8 @@ export const ProfilePage = () => {
     const [loading, setLoading] = useState(false)
     const { user, image, error } = useFetchUser();
     const [formData, setFormData] = useState<any>({})
-
+    const [secondFormData, setSecondFormData] = useState<any>({});
+    
     const nav = useNavigate()
 
     useEffect(() => {
@@ -29,7 +30,6 @@ export const ProfilePage = () => {
             });
         }
     }, [user]);
-//console.log("USER", user)
    
     const handleChange = (e: any) => {
         const { name, value } = e.target;
@@ -41,7 +41,7 @@ export const ProfilePage = () => {
         setLoading(true);
        
         try {
-            console.log("formData", formData)
+            
             const response = await axios.put(`${api_url}/update`, formData);
             if (response.data.success) {
                 setLoading(false);
@@ -55,8 +55,8 @@ export const ProfilePage = () => {
 
 
     return (
-        isOpen ? <>< div className='mt-4 ' >
-            <div className='flex justify-between bg-gray-800 p-4 text-white text-lg font-bold mb-4 rounded-lg'><p>Edit Profile Info</p>
+       <div className='mt-4 '>
+            <div className='flex justify-between bg-gray-800 p-4 text-white text-lg font-bold mb-4 rounded-lg'><p>Edit User Info</p>
                 {isOpen ? <ChevronDownIcon className="w-6 h-6" onClick={() => setIsOpen(!isOpen)} /> : <ChevronUpIcon className="w-6 h-6" onClick={() => setIsOpen(!isOpen)} />}
             </div>
             {
@@ -68,54 +68,88 @@ export const ProfilePage = () => {
                                 <tr>
                                     {/* First Column */}
                                     <td className="px-4 py-2">
-                                        {
-                                            ProfileFormData.slice(0, 3).map(formData => (
-                                                <div key={formData.id} className="mb-4">
-                                                    <label htmlFor={formData.id} className="block text-sm font-medium text-gray-700">{formData.title}<span className='m-1 text-md font-bold text-red-400'>*</span></label>
-                                                    <input
-                                                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                                                        type={formData.type}
-                                                        id={formData.id}
-                                                        name={formData.name}
-                                                        defaultValue={user && user[formData.name]}
-                                                        placeholder={formData.placeholder}
-                                                        onChange={handleChange}
-                                                    />
-                                                </div>
-                                            ))
-                                        }
-                                        <div className="">
-                                            <label htmlFor="bio" className="block text-sm font-medium text-gray-700">Biography<span className='m-1 text-md font-bold text-red-400'>*</span></label>
-                                            <textarea
-                                                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                                                id="bio"
-                                                name="bio"
-                                                defaultValue={user && user[formData.name]}
-                                                placeholder="Tell us a little about yourself..."
-                                                onChange={handleChange}
-                                            />
+                                        
+                                        <div className="mb-4">
+                                            <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First Name<span className='m-1 text-md font-bold text-red-400'>*</span></label>
+                                                <input
+                                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                                    type="text"
+                                                    id="firstName"
+                                                    name="firstName"
+                                                    defaultValue={user && user.firstName}
+                                                    placeholder="Please enter your first name"
+                                                    onChange={handleChange}
+                                                />
                                         </div>
+
+                                        <div className="mb-4">
+                                            <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">Last Name<span className='m-1 text-md font-bold text-red-400'>*</span></label>
+                                                <input
+                                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                                    type="text"
+                                                    id="lastName"
+                                                    name="lastName"
+                                                    defaultValue={user && user.lastName}
+                                                    placeholder="Please enter your last name"
+                                                    onChange={handleChange}
+                                                />
+                                        </div>
+
+                                        <div className="mb-4">
+                                            <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">Biography<span className='m-1 text-md font-bold text-red-400'>*</span></label>
+                                                <input
+                                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                                    type="text"
+                                                    id="bio"
+                                                    name="bio"
+                                                    defaultValue={user && user.bio}
+                                                    placeholder="Please enter your biography"
+                                                    onChange={handleChange}
+                                                />
+                                    </div>
+                                        
                                     </td>
 
                                     {/* Second Column */}
                                     <td className="px-4 py-2">
-                                        {
-                                            ProfileFormData.slice(3, 7).map(formData => (
-                                                <div key={formData.id} className="mb-4">
-                                                    <label htmlFor={formData.id} className="block text-sm font-medium text-gray-700">{formData.title}<span className='m-1 text-md font-bold text-red-400'>*</span></label>
-                                                    <input
-                                                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                                                        type={formData.type}
-                                                        id={formData.id}
-                                                        name={formData.name}
-                                                        defaultValue={user && user[formData.name]}
-                                                        placeholder={formData.placeholder}
-                                                        onChange={handleChange}
-                                                    />
-                                                </div>
-                                            ))
-                                        }
-                                    </td>
+                                        <div className="mb-4">
+                                            <label htmlFor="idNumber" className="block text-sm font-medium text-gray-700">ID Number<span className='m-1 text-md font-bold text-red-400'>*</span></label>
+                                                <input
+                                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                                    type="text"
+                                                    id="idNumber"
+                                                    name="idNumber"
+                                                    defaultValue={user && user.idNumber}
+                                                    placeholder="Please enter your ID number"
+                                                    onChange={handleChange}
+                                                />
+                                        </div>
+
+                                        <div className="mb-4">
+                                            <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">Phone Number<span className='m-1 text-md font-bold text-red-400'>*</span></label>
+                                                <input
+                                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                                    type="text"
+                                                    id="phoneNumber"
+                                                    name="phoneNumber"
+                                                    defaultValue={user && user.phoneNumber}
+                                                    placeholder="Please enter your phone number"
+                                                    onChange={handleChange}
+                                                />
+                                        </div>
+
+                                        <div className="mb-4">
+                                            <label htmlFor="gender" className="block text-sm font-medium text-gray-700">Gender<span className='m-1 text-md font-bold text-red-400'>*</span></label>
+                                                <input
+                                                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                                    type="text"
+                                                    id="gender"
+                                                    name="gender"
+                                                    defaultValue={user && user.gender}
+                                                    readOnly
+                                                />
+                                        </div>
+                                    </td> 
                                 </tr>
                             </tbody>
                         </table>
@@ -128,7 +162,10 @@ export const ProfilePage = () => {
                     </form></>
             }
 
-            {!isOpen && <ModalComponent modalContent={<PlaceHolder imageSrc={"/correct.png"} description={"Successfully updated Profile"} size={"h-24 w-24"} />} />}
-        </div ></> : <><ProfileView /></>
+            {/* {!isOpen && <ModalComponent modalContent={<PlaceHolder imageSrc={"/correct.png"} description={"Successfully updated Profile"} size={"h-24 w-24"} />} />}
+        </div ></> : <><ProfileView /></> */}
+        </div>
+
+        
     );
 };
