@@ -8,14 +8,14 @@ export const DashboardLayout: React.FC<any> = ({ Outlet, navItems }) => {
     const location = useLocation();
     
    const {user, loading} = useFetchUser();
-
+    console.log("user", user?.school)
 
    
     return (
         <div className="flex min-h-screen bg-gray-100">
             {/* Side Navigation */}
             <aside className="w-64 bg-gray-800 text-white flex flex-col rounded-lg m-2 mr-0 fixed top-0 bottom-0">
-                <div className="p-4 text-2xl font-bold">{loading ? "Loading..." : user.school.name}</div>
+                <div className="p-4 text-2xl font-bold">{loading ? "Loading..." : user?.school.name}</div>
                 <hr className="border-gray-700 mx-4 mb-2" />
                 <nav className="flex-1 overflow-y-auto">
                     {navItems.map((item: any) => (
