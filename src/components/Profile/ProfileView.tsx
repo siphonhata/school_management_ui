@@ -1,8 +1,7 @@
-import { useFetchUser } from "../Common";
 
-export const ProfileView = () => {
+export const ProfileView = ({user, loading} : any) => {
 
-    const {user, loading} = useFetchUser();
+    
     const formatDate = (dateString: any) =>{
         const date = new Date(dateString);
         const monthNames = ["January", "February", "March", "April", "May", "June",

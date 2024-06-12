@@ -12,7 +12,7 @@ export const ProfilePage = () => {
     const [isPasswordOpen, setIsPasswordOpen] = useState(false);
     const [isSchoolOpen, setIsSchoolOpen] = useState(false);
     const [loading, setLoading] = useState(false)
-    const { user } = useFetchUser();
+    const { user, loading: load  } = useFetchUser();
     const [formData, setFormData] = useState<any>({})
 
     const nav = useNavigate()
@@ -60,8 +60,9 @@ export const ProfilePage = () => {
 
     return (
        <div className='mt-4 '>
-        <ProfileView />
+        <ProfileView user={user} loading={load} />
 
+        <div>
         {user && user.role === 'ADMIN' && (
             <div className='flex justify-between bg-gray-800 p-4 text-white text-lg font-bold mb-4 rounded-lg'><p>Edit School Info</p>
                 {isSchoolOpen ? <ChevronDownIcon className="w-6 h-6" onClick={() => setIsSchoolOpen(!isSchoolOpen)} /> : <ChevronUpIcon className="w-6 h-6" onClick={() => setIsSchoolOpen(!isSchoolOpen)} />}
@@ -115,16 +116,23 @@ export const ProfilePage = () => {
                                 </tr>
                             </tbody>
                         </table>
-                        <button className='float-center flex border-2 border-gray-800 bg-gray-800 mx-3 text-white font-bold p-2 rounded-lg hover:bg-white hover:text-gray-800 relative' type="submit">
+                        <div className="flex justify-end mt-4 mb-4 mr-4">
+                                <button className='border-2 border-gray-800 bg-gray-800 text-white font-bold p-2 rounded-lg hover:bg-white hover:text-gray-800 flex items-center' type="submit">
+                                    {loading && <ButtonLoader />}
+                                    Submit
+                                </button>
+                        </div>
+                        {/* <button className='float-right flex border-2 border-gray-800 bg-gray-800 mx-3 text-white font-bold p-2 rounded-lg hover:bg-white hover:text-gray-800 relative' type="submit">
                             <span className="flex items-center">
                                 {loading && <div className='flex justify-center items-center text-center'><ButtonLoader /></div>}
                                 Submit
                             </span>
-                        </button>
+                        </button> */}
                     </form></>
-                )}
+        )}
+        </div>
 
-
+            <div>
             <div className='flex justify-between bg-gray-800 p-4 text-white text-lg font-bold mb-4 rounded-lg'><p>Edit User Info</p>
                 {isOpen ? <ChevronDownIcon className="w-6 h-6" onClick={() => setIsOpen(!isOpen)} /> : <ChevronUpIcon className="w-6 h-6" onClick={() => setIsOpen(!isOpen)} />}
             </div>
@@ -222,14 +230,15 @@ export const ProfilePage = () => {
                                 </tr>
                             </tbody>
                         </table>
-                        <button className='float-right flex border-2 border-gray-800 bg-gray-800 mx-3 text-white font-bold p-2 rounded-lg hover:bg-white hover:text-gray-800 relative' type="submit">
-                            <span className="flex items-center">
-                                {loading && <div className='flex justify-center items-center text-center'><ButtonLoader /></div>}
-                                Submit
-                            </span>
-                        </button>
+                        <div className="flex justify-end mt-4 mb-4 mr-4">
+                                <button className='border-2 border-gray-800 bg-gray-800 text-white font-bold p-2 rounded-lg hover:bg-white hover:text-gray-800 flex items-center' type="submit">
+                                    {loading && <ButtonLoader />}
+                                    Submit
+                                </button>
+                        </div>
                     </form></>
             }
+            </div>
 
             <div className='flex justify-between bg-gray-800 p-4 text-white text-lg font-bold mb-4 rounded-lg'><p>Edit User Address</p>
                 {isAddressOpen ? <ChevronDownIcon className="w-6 h-6" onClick={() => setIsAddressOpen(!isAddressOpen)} /> : <ChevronUpIcon className="w-6 h-6" onClick={() => setIsAddressOpen(!isAddressOpen)} />}
@@ -327,12 +336,12 @@ export const ProfilePage = () => {
                                 </tr>
                             </tbody>
                         </table>
-                        <button className='float-right flex border-2 border-gray-800 bg-gray-800 mx-3 text-white font-bold p-2 rounded-lg hover:bg-white hover:text-gray-800 relative' type="submit">
-                            <span className="flex items-center">
-                                {loading && <div className='flex justify-center items-center text-center'><ButtonLoader /></div>}
-                                Submit
-                            </span>
-                        </button>
+                        <div className="flex justify-end mt-4 mb-4 mr-4">
+                                <button className='border-2 border-gray-800 bg-gray-800 text-white font-bold p-2 rounded-lg hover:bg-white hover:text-gray-800 flex items-center' type="submit">
+                                    {loading && <ButtonLoader />}
+                                    Submit
+                                </button>
+                        </div>
                     </form></>
             }
 
@@ -389,12 +398,12 @@ export const ProfilePage = () => {
                                 </tr>
                             </tbody>
                         </table>
-                        <button className='float-right flex border-2 border-gray-800 bg-gray-800 mx-3 text-white font-bold p-2 rounded-lg hover:bg-white hover:text-gray-800 relative' type="submit">
-                            <span className="flex items-center">
-                                {loading && <div className='flex justify-center items-center text-center'><ButtonLoader /></div>}
-                                Submit
-                            </span>
-                        </button>
+                        <div className="flex justify-end mt-4 mb-4 mr-4">
+                                <button className='border-2 border-gray-800 bg-gray-800 text-white font-bold p-2 rounded-lg hover:bg-white hover:text-gray-800 flex items-center' type="submit">
+                                    {loading && <ButtonLoader />}
+                                    Submit
+                                </button>
+                        </div>
                     </form></>
             }
 
