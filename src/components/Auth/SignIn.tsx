@@ -14,7 +14,7 @@ export const Login = () => {
   const nav = useNavigate();
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-
+    
     if (!email || !password) {
       setErrorMessage("Please fill in all fields");
       return;
@@ -25,16 +25,28 @@ export const Login = () => {
         email,
         password,
       });
+      
       if (response?.data.success) {
         if (response.data.token) {
           localStorage.setItem("_Ey_", response.data.token);
           nav("/dashboard");
         }
-      } else {
+      } 
+      else {
         setErrorMessage(response?.data.message);
       }
     } catch (error) {
-      setErrorMessage("An error occurred. Please try again.");
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status === 404) {
+          setErrorMessage("User does not exist");
+        } else if (error.response?.status === 401) {
+          setErrorMessage("Invalid credentials.");
+        } else {
+          setErrorMessage("An error occurred. Please try again.");
+        }
+      } else {
+        setErrorMessage("An unexpected error occurred.");
+      }
     }
   };
 
