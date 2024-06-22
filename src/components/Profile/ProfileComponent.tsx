@@ -14,13 +14,15 @@ export const ProfilePage = () => {
   const [loading, setLoading] = useState(false);
   const { user, loading: load } = useFetchUser();
 
-  const [formData, setFormData] = useState<any>({});
-  const [schoolFormData, setSchoolFormData] = useState<any>({});
-  const [addressFormData, setAddressFormData] = useState<any>({});
-  const [passwordFormData, setPasswordFormData] = useState<any>({});
-
+  const [formData, setFormData] = useState<any>({
+    userInfo: {},
+    address: {},
+    password: {},
+    school: {},
+  });
   const nav = useNavigate();
 
+  console.log("Form Data => ", formData)
   useEffect(() => {
     if (user) {
       setFormData({
@@ -30,36 +32,35 @@ export const ProfilePage = () => {
         email: user.email,
         phoneNumber: user.phoneNumber,
         bio: user.bio,
-        // address: user.address,
-        // password: user.password,
+        address: user.address,
+        password: user.password,
       });
-    //   setAddressFormData({
-    //     address: user.address
-    //   });
-        // setSchoolFormData({
-        //     name: user.school.name,
-        //     email: user.school.email,
-        //     phoneNumber: user.school.phoneNumber,
-        //     website: user.school.website,
-        //     missionStatement: user.school.missionStatement,
-        //     totalStudents: user.school.totalStudents,
-        //     enrollmentCapacity: user.school.enrollmentCapacity
-        // });
     }
   }, [user]);
 
-  const handleChange = (e: any) => {
+  // const handleChange = (e: any) => {
+  //   const { name, value } = e.target;
+
+  //   setFormData({ ...formData, [name]: value });
+  // };
+  const handleChange = (e: any, formSection: string) => {
     const { name, value } = e.target;
-
-    setFormData({ ...formData, [name]: value });
+    setFormData((prevData: any) => ({
+      ...prevData,
+      [formSection]: {
+        ...prevData[formSection],
+        [name]: value,
+      },
+    }));
   };
-
+  
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setLoading(true);
 
     try {
       const response = await axios.put(`${api_url}/update`, formData);
+
       if (response.data.success) {
         setLoading(false);
         setIsOpen(!isOpen);
@@ -117,7 +118,8 @@ export const ProfilePage = () => {
                           name="name"
                           defaultValue={user && user?.school.name}
                           placeholder="Please enter School Name"
-                          onChange={handleChange}
+                          
+                          onChange={(e) => handleChange(e, 'school')}
                         />
                       </div>
 
@@ -138,7 +140,7 @@ export const ProfilePage = () => {
                           name="email"
                           defaultValue={user && user?.school.email}
                           placeholder="Please enter School Email Address"
-                          onChange={handleChange}
+                          onChange={(e) => handleChange(e, 'school')}
                         />
                       </div>
 
@@ -159,7 +161,7 @@ export const ProfilePage = () => {
                           name="phoneNumber"
                           defaultValue={user && user?.school.phoneNumber}
                           placeholder="Please enter School Contact number"
-                          onChange={handleChange}
+                          onChange={(e) => handleChange(e, 'school')}
                         />
                       </div>
 
@@ -180,7 +182,7 @@ export const ProfilePage = () => {
                           name="website"
                           defaultValue={user && user?.school.website}
                           placeholder="Please enter School Website"
-                          onChange={handleChange}
+                          onChange={(e) => handleChange(e, 'school')}
                         />
                       </div>
                     </td>
@@ -225,7 +227,7 @@ export const ProfilePage = () => {
                           name="missionStatement"
                           defaultValue={user && user?.school.missionStatement}
                           placeholder="Please enter School Mission Staement"
-                          onChange={handleChange}
+                          onChange={(e) => handleChange(e, 'school')}
                         />
                       </div>
 
@@ -267,7 +269,7 @@ export const ProfilePage = () => {
                           name="enrollmentCapacity"
                           defaultValue={user && user?.school.enrollmentCapacity}
                           placeholder="Please enter School Mission Staement"
-                          onChange={handleChange}
+                          onChange={(e) => handleChange(e, 'school')}
                         />
                       </div>
                     </td>
@@ -329,7 +331,7 @@ export const ProfilePage = () => {
                           name="firstName"
                           defaultValue={user && user.firstName}
                           placeholder="Please enter your first name"
-                          onChange={handleChange}
+                          onChange={(e) => handleChange(e, 'userInfo')}
                         />
                       </div>
 
@@ -350,7 +352,7 @@ export const ProfilePage = () => {
                           name="lastName"
                           defaultValue={user && user.lastName}
                           placeholder="Please enter your last name"
-                          onChange={handleChange}
+                          onChange={(e) => handleChange(e, 'userInfo')}
                         />
                       </div>
 
@@ -371,7 +373,7 @@ export const ProfilePage = () => {
                           name="bio"
                           defaultValue={user && user.bio}
                           placeholder="Please enter your biography"
-                          onChange={handleChange}
+                          onChange={(e) => handleChange(e, 'userInfo')}
                         />
                       </div>
                     </td>
@@ -395,7 +397,7 @@ export const ProfilePage = () => {
                           name="idNumber"
                           defaultValue={user && user.idNumber}
                           placeholder="Please enter your ID number"
-                          onChange={handleChange}
+                          onChange={(e) => handleChange(e, 'userInfo')}
                         />
                       </div>
 
@@ -416,7 +418,7 @@ export const ProfilePage = () => {
                           name="phoneNumber"
                           defaultValue={user && user.phoneNumber}
                           placeholder="Please enter your phone number"
-                          onChange={handleChange}
+                          onChange={(e) => handleChange(e, 'userInfo')}
                         />
                       </div>
 
@@ -494,9 +496,9 @@ export const ProfilePage = () => {
                         type="text"
                         id="address"
                         name="address"
-                        defaultValue={user && user.address}
+                        defaultValue={user && user.address.address}
                         placeholder="Please enter your address"
-                        onChange={handleChange}
+                        onChange={(e) => handleChange(e, 'address')}
                       />
                     </div>
 
@@ -515,9 +517,9 @@ export const ProfilePage = () => {
                         type="text"
                         id="city"
                         name="city"
-                        defaultValue={user && user.lastName}
+                        defaultValue={user && user.address.city}
                         placeholder="Please enter your city"
-                        onChange={handleChange}
+                        onChange={(e) => handleChange(e, 'address')}
                       />
                     </div>
 
@@ -536,9 +538,9 @@ export const ProfilePage = () => {
                         type="text"
                         id="stateProvince"
                         name="stateProvince"
-                        defaultValue={user && user.bio}
+                        defaultValue={user && user.address.stateProvince}
                         placeholder="Please enter your province"
-                        onChange={handleChange}
+                        onChange={(e) => handleChange(e, 'address')}
                       />
                     </div>
                   </td>
@@ -560,9 +562,9 @@ export const ProfilePage = () => {
                         type="text"
                         id="country"
                         name="country"
-                        defaultValue={user && user.idNumber}
+                        defaultValue={user && user.address.country}
                         placeholder="Please enter your country"
-                        onChange={handleChange}
+                        onChange={(e) => handleChange(e, 'address')}
                       />
                     </div>
 
@@ -581,9 +583,9 @@ export const ProfilePage = () => {
                         type="text"
                         id="postalCode"
                         name="postalCode"
-                        defaultValue={user && user.phoneNumber}
+                        defaultValue={user && user.address.postalCode}
                         placeholder="Please enter your postal code"
-                        onChange={handleChange}
+                        onChange={(e) => handleChange(e, 'address')}
                       />
                     </div>
 
@@ -602,7 +604,8 @@ export const ProfilePage = () => {
                         type="text"
                         id="faxNumber"
                         name="faxNumber"
-                        defaultValue={user && user.gender}
+                        placeholder="Please enter your fax number"
+                        defaultValue={user && user.address.faxNumber}
                         readOnly
                       />
                     </div>
@@ -661,7 +664,7 @@ export const ProfilePage = () => {
                         id="password"
                         name="password"
                         placeholder="Please enter your current password"
-                        onChange={handleChange}
+                        onChange={(e) => handleChange(e, 'password')}
                       />
                     </div>
 
@@ -681,7 +684,7 @@ export const ProfilePage = () => {
                         id="newPassword"
                         name="newPassword"
                         placeholder="Please enter your new password"
-                        onChange={handleChange}
+                        onChange={(e) => handleChange(e, 'password')}
                       />
                     </div>
 
@@ -701,7 +704,7 @@ export const ProfilePage = () => {
                         id="confirmPassword"
                         name="confirmPassword"
                         placeholder="Please confirm your password"
-                        onChange={handleChange}
+                        onChange={(e) => handleChange(e, 'password')}
                       />
                     </div>
                   </td>
