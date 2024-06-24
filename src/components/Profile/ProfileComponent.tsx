@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
 import { api_url } from "../../App";
 import axios from "axios";
@@ -10,7 +10,7 @@ export const ProfilePage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isAddressOpen, setIsAddressOpen] = useState(false);
   const [isPasswordOpen, setIsPasswordOpen] = useState(false);
-  const [isSchoolOpen, setIsSchoolOpen] = useState(true);
+  const [isSchoolOpen, setIsSchoolOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const { user, loading: load } = useFetchUser();
 
@@ -23,26 +23,7 @@ export const ProfilePage = () => {
   const nav = useNavigate();
 
   console.log("Form Data => ", formData)
-  useEffect(() => {
-    if (user) {
-      setFormData({
-        firstName: user.firstName,
-        lastName: user.lastName,
-        idNumber: user.idNumber,
-        email: user.email,
-        phoneNumber: user.phoneNumber,
-        bio: user.bio,
-        address: user.address,
-        password: user.password,
-      });
-    }
-  }, [user]);
-
-  // const handleChange = (e: any) => {
-  //   const { name, value } = e.target;
-
-  //   setFormData({ ...formData, [name]: value });
-  // };
+  
   const handleChange = (e: any, formSection: string) => {
     const { name, value } = e.target;
     setFormData((prevData: any) => ({
@@ -54,13 +35,13 @@ export const ProfilePage = () => {
     }));
   };
   
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: any, type: string) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      const response = await axios.put(`${api_url}/update`, formData);
-
+      const response = await axios.put(`${api_url}/update`, {formData, type});
+      
       if (response.data.success) {
         setLoading(false);
         setIsOpen(!isOpen);
@@ -95,7 +76,8 @@ export const ProfilePage = () => {
 
         {isSchoolOpen && user && user.role === "ADMIN" && (
           <>
-            <form onSubmit={handleSubmit}>
+         
+          <form onSubmit={(e) => handleSubmit(e, 'school')}>
             <table className="w-full">
                 <tbody>
                   <tr>
@@ -307,7 +289,7 @@ export const ProfilePage = () => {
         </div>
         {isOpen && (
           <>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={(e) => handleSubmit(e, 'user')}>
               <UpdateProfilePicture />
               <table className="w-full">
                 <tbody>
@@ -475,7 +457,7 @@ export const ProfilePage = () => {
       </div>
       {isAddressOpen && (
         <>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={(e) => handleSubmit(e, 'address')}>
             <table className="w-full">
               <tbody>
                 <tr>
@@ -642,7 +624,7 @@ export const ProfilePage = () => {
       </div>
       {isPasswordOpen && (
         <>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={(e) => handleSubmit(e, 'password')}>
             <table className="w-full">
               <tbody>
                 <tr>
@@ -661,8 +643,8 @@ export const ProfilePage = () => {
                       <input
                         className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                         type="password"
-                        id="password"
-                        name="password"
+                        id="oldPassword"
+                        name="oldPassword"
                         placeholder="Please enter your current password"
                         onChange={(e) => handleChange(e, 'password')}
                       />
