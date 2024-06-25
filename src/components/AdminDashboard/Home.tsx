@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { api_url } from "../../App";
-import { FaUserGraduate, FaUsers, FaChalkboardTeacher, FaDollarSign   } from "react-icons/fa";
+import { FaUserGraduate, FaUsers, FaChalkboardTeacher, FaDollarSign } from "react-icons/fa";
+import { TeachersCard } from ".";
+
+
+const teachers = [
+  { name: 'John Doe', avatar: 'https://via.placeholder.com/150' },
+  { name: 'Jane Smith', avatar: 'https://via.placeholder.com/150' },
+  { name: 'Michael Johnson', avatar: 'https://via.placeholder.com/150' },
+];
 
 export const HomeAdmin: React.FC = () => {
   const [stats, setStats] = useState({
@@ -39,7 +47,7 @@ export const HomeAdmin: React.FC = () => {
         </div>
       </div>
       <div className="w-60 h-16 bg-white text-gray-400 rounded-lg flex flex-col-reverse justify-between items-center shadow-sm p-4 mt-3">
-      <div className="flex items-center mt-4">
+        <div className="flex items-center mt-4">
           <FaChalkboardTeacher className="mr-3 h-6 w-6 text-gray-900" />
           <div>
             <div className="text-sm font-semibold text-gray-400">
@@ -52,7 +60,7 @@ export const HomeAdmin: React.FC = () => {
         </div>
       </div>{" "}
       <div className="w-60 h-16 bg-white text-gray-400 rounded-lg flex flex-col-reverse justify-between items-center shadow-sm p-4 mt-3">
-      <div className="flex items-center mt-4">
+        <div className="flex items-center mt-4">
           <FaUsers className="mr-3 h-6 w-6 text-gray-900" />
           <div>
             <div className="text-sm font-semibold text-gray-400">
@@ -65,7 +73,7 @@ export const HomeAdmin: React.FC = () => {
         </div>
       </div>
       <div className="w-60 h-16 bg-white text-gray-400 rounded-lg flex flex-col-reverse justify-between items-center shadow-sm p-4 mt-3">
-      <div className="flex items-center mt-4">
+        <div className="flex items-center mt-4">
           <FaDollarSign className="mr-3 h-6 w-6 text-gray-900" />
           <div>
             <div className="text-sm font-semibold text-gray-400">
@@ -77,6 +85,9 @@ export const HomeAdmin: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* ============================ */}
+      <TeachersCard teachers={teachers} />
     </div>
   );
 };
