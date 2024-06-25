@@ -1,5 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { ForgotPassword, Login, RegisterSchoolForm, VerifyAccount } from '.';
+import { ResetPassword } from './ResetPassword';
+
 
 export const AuthLayout = () => {
     const location = useLocation();
@@ -14,6 +16,8 @@ export const AuthLayout = () => {
                 return <VerifyAccount />;
             case '/forgot-password':
                 return <ForgotPassword />;
+                case '/reset-password':
+                    return <ResetPassword />;
             default:
                 return <Login />; // Default to login if no match
         }
