@@ -6,11 +6,8 @@ import { useFetchUser } from '../Common';
 
 export const DashboardLayout: React.FC<any> = ({ Outlet, navItems }) => {
     const location = useLocation();
-    
-   const {user, loading} = useFetchUser();
-    console.log("user", user?.school)
+    const {user, loading} = useFetchUser();
 
-   
     return (
         <div className="flex min-h-screen bg-gray-100">
             {/* Side Navigation */}
