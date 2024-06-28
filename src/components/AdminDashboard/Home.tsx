@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { api_url } from "../../App";
 import { FaUserGraduate, FaUsers, FaChalkboardTeacher, FaDollarSign } from "react-icons/fa";
-import { NoticeBoardCard, TeachersCard } from ".";
+import { CalendarComponent, NoticeBoardCard, TeachersCard } from ".";
 
 
 const teachers = [
@@ -63,11 +63,17 @@ export const HomeAdmin: React.FC = () => {
       value: 500000, // Replace this with stats.totalRevenue
     },
   ];
+  const events = [
+    { date: new Date(2024, 5, 25) },
+    { date: new Date(2024, 5, 28) },
+    { date: new Date(2024, 6, 2) },
+    { date: new Date(2024, 11, 25) },
+  ];
   return (
-    <div className="">
-      <div className="flex space-x-4 overflow-x-auto">
+    <div className="w-full">
+      <div className="flex space-x-4">
         {statData?.map((stat: any) => (
-          <div key={stat.id} className="w-60 h-16 bg-white text-gray-400 rounded-lg flex flex-col-reverse justify-between items-center shadow-sm p-4 mt-3">
+          <div key={stat.id} className="w-full h-20 bg-white text-gray-400 rounded-lg flex flex-col-reverse justify-between items-center shadow-sm p-4 mt-3">
             <div className="flex items-center mt-4">
               {stat.icon}
               <div>
@@ -80,11 +86,16 @@ export const HomeAdmin: React.FC = () => {
       </div>
 
       {/* ============================ */}
-      <div className="mt-4 flex">
-        <NoticeBoardCard /> </div>
-      <div className="mt-4 flex">
-        <TeachersCard teachers={teachers} />
+      <div className="bg-white my-5 px-4 rounded-lg grid grid-cols-5 gap-4">
+        <div className="my-4 col-span-3">
+          <NoticeBoardCard /> </div>
+        <div className="my-4 col-span-2 col-start-4">
+          <TeachersCard teachers={teachers} />
+          <CalendarComponent events={events} />
+        </div>
       </div>
+
+
     </div>
   );
 };
