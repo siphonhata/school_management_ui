@@ -64,7 +64,7 @@ const useQuery = () => {
                             New Password<span className="m-1 text-md font-bold text-red-400">*</span>
                         </label>
                         <input
-                            type="text"
+                            type="password"
                             id="newPassword"
                             name="newPassword"
                             value={newPassword}
@@ -82,7 +82,7 @@ const useQuery = () => {
                             Confirm Password<span className="m-1 text-md font-bold text-red-400">*</span>
                         </label>
                         <input
-                            type="text"
+                            type="password"
                             id="confirmPassword"
                             name="confirmPassword"
                             value={confirmPassword}
