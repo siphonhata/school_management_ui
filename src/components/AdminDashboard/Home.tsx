@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { api_url } from "../../App";
 import { FaUserGraduate, FaUsers, FaChalkboardTeacher, FaDollarSign } from "react-icons/fa";
-import { TeachersCard } from ".";
+import { NoticeBoardCard, TeachersCard } from ".";
 
 
 const teachers = [
@@ -80,7 +80,9 @@ export const HomeAdmin: React.FC = () => {
       </div>
 
       {/* ============================ */}
-      <div className="mt-4">
+      <div className="mt-4 flex">
+        <NoticeBoardCard /> </div>
+      <div className="mt-4 flex">
         <TeachersCard teachers={teachers} />
       </div>
     </div>
