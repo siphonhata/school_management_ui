@@ -67,12 +67,15 @@ export const CalendarComponent = ({ events }: CalendarComponentProps) => {
                 formattedDate = format(day, dateFormat);
                 const cloneDay = day;
 
+                const isInCurrentMonth = day >= monthStart && day <= monthEnd;
+
                 days.push(
                     <div
                         className={`p-2 text-center rounded-full 
-              ${isToday(cloneDay) ? 'bg-blue-200' : ''} 
-              ${events.some((event: Event) => isSameDay(event.date, cloneDay)) ? 'bg-green-200' : ''}
-            `}
+                          ${isToday(cloneDay) ? 'bg-blue-200 text-white' : ''} 
+                          ${events.some((event: Event) => isSameDay(event.date, cloneDay)) ? 'bg-green-200' : ''} 
+                          ${!isInCurrentMonth ? 'text-gray-300' : ''}
+                        `}
                         key={cloneDay.getTime()}
                     >
                         <span>{formattedDate}</span>
@@ -90,6 +93,7 @@ export const CalendarComponent = ({ events }: CalendarComponentProps) => {
 
         return <div>{rows}</div>;
     };
+
 
     const nextMonth = () => {
         setCurrentMonth(addMonths(currentMonth, 1));
@@ -117,7 +121,7 @@ export const CalendarComponent = ({ events }: CalendarComponentProps) => {
                 {events.map((event, index) => (
                     <div key={index} className={`p-4 rounded-lg ${backgroundColors[index % backgroundColors.length]}`}>
                         <div className="flex items-center">
-                            <span className='w-2 h-2 bg-green-500 rounded-full mr-2'></span>
+                            <span className='w-4 h-4 bg-green-500 rounded-full mr-2'></span>
                             <p className="text-sm text-gray-600">{format(event.date, 'MMMM d, yyyy')}</p>
                         </div>
                         <h3 className="text-2xl font-bold text-white">{event?.title}</h3>
