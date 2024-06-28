@@ -64,10 +64,12 @@ export const HomeAdmin: React.FC = () => {
     },
   ];
   const events = [
-    { date: new Date(2024, 5, 25) },
-    { date: new Date(2024, 5, 28) },
-    { date: new Date(2024, 6, 2) },
-    { date: new Date(2024, 11, 25) },
+    { date: new Date(2024, 5, 25), title: "Sport day", description: "Sport day Event" },
+    { date: new Date(2024, 5, 28), title: "Teachers Day", description: "Teacher event" },
+    { date: new Date(2024, 6, 2), title: "Fun day", description: "Fun day Event" },
+    { date: new Date(2024, 6, 3), title: "Fun day", description: "Fun day Event" },
+    { date: new Date(2024, 6, 9), title: "Fun day", description: "Fun day Event" },
+    { date: new Date(2024, 11, 25), title: "", description: "" },
   ];
   return (
     <div className="w-full">
