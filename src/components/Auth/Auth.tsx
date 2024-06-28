@@ -1,23 +1,24 @@
 import { useLocation } from 'react-router-dom';
-import { ForgotPassword, Login, RegisterSchoolForm, VerifyAccount } from '.';
-import { ResetPassword } from './ResetPassword';
+import { ForgotPassword, Login, RegisterSchoolForm, ResetPassword, VerifyAccount } from '.';
+
 
 
 export const AuthLayout = () => {
     const location = useLocation();
-
+    
     const renderForm = () => {
         switch (location.pathname) {
             case '/signin':
                 return <Login />;
             case '/register':
                 return <RegisterSchoolForm />;
+            case '/reset-password':
+                return <ResetPassword />;
             case '/verify-account':
                 return <VerifyAccount />;
             case '/forgot-password':
                 return <ForgotPassword />;
-                case '/reset-password':
-                    return <ResetPassword />;
+            
             default:
                 return <Login />; // Default to login if no match
         }

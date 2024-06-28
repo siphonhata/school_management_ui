@@ -1,15 +1,52 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { api_url } from '../../App';
 
-export const ResetPassword = () => {
+const useQuery = () => {
+    return new URLSearchParams(useLocation().search);
+  }
+  
+  export const ResetPassword = () => {
+    const query = useQuery();
+    const id = query.get('id');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    const nav = useNavigate();
 
-    const handleSubmit = (e: any) => {
+    useEffect(() => {
+        if (!id) {
+          alert('Invalid request');
+          setErrorMessage("Invalid Request")
+        }
+      }, [id]);
+      
+      
+
+    const handleSubmit = async (e: any) => {
         e.preventDefault();
-        // Handle forgot password logic here
-    };
+        // Handle reset password logic here
+        
+        if (newPassword !== confirmPassword) {
+            alert('Passwords do not match');
+            return;
+        }
+
+        try {
+            const response = await axios.post(`${api_url}/reset-password`, { id, newPassword, confirmPassword });
+            
+            if (response.data.success) {
+                alert('Password has been reset successfully!');
+                 nav("/signin");
+            console.log("Password succesfully reset")
+            }
+          } 
+          catch (error) {
+            console.error("Error sending email:", error);
+          }
+        };
 
     return (
         <div className="flex justify-center items-center h-screen bg-white">
@@ -69,4 +106,6 @@ export const ResetPassword = () => {
         </div>
     );
 };
+
+
 

@@ -1,14 +1,32 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { api_url } from '../../App';
+import axios from 'axios';
 
 export const ForgotPassword = () => {
     const [email, setEmail] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = async (e: any) => {
         e.preventDefault();
         // Handle forgot password logic here
-    };
+
+        try {
+            const response = await axios.post(`${api_url}/forgot-password`, {email});
+            
+            if (response.data.success) {
+            //   setLoading(false);
+            //   setIsOpen(!isOpen);
+            //   nav("/dashboard/profile");
+            console.log("EMAIL SENT")
+            }
+          } 
+          catch (error) {
+            setErrorMessage("Error sending email");
+            console.error("Error sending email:", error);
+          }
+        };
+    
 
     return (
         <div className="flex justify-center items-center h-screen bg-white">
