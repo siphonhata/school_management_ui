@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { api_url } from "../../App";
 import { FaUserGraduate, FaUsers, FaChalkboardTeacher, FaDollarSign } from "react-icons/fa";
-import { CalendarComponent, NoticeBoardCard, TeachersCard } from ".";
+import { AttendanceDoughnutChart, CalendarComponent, NoticeBoardCard, TeachersCard } from ".";
 
 
 const teachers = [
@@ -69,8 +69,29 @@ export const HomeAdmin: React.FC = () => {
     { date: new Date(2024, 6, 2), title: "Fun day", description: "Fun day Event" },
     { date: new Date(2024, 6, 3), title: "Fun day", description: "Fun day Event" },
     { date: new Date(2024, 6, 9), title: "Fun day", description: "Fun day Event" },
-    { date: new Date(2024, 11, 25), title: "", description: "" },
+    { date: new Date(2024, 11, 25), title: "Matric Dance Function", description: "" },
   ];
+
+  // const attendance = [
+  //   { month: 'January', students: 300, teachers: 50 },
+  //   { month: 'February', students: 280, teachers: 45 },
+  //   { month: 'March', students: 320, teachers: 55 },
+  //   { month: 'April', students: 300, teachers: 50 },
+  //   { month: 'May', students: 280, teachers: 45 },
+  //   { month: 'June', students: 20, teachers: 55 },
+  //   { month: 'July', students: 100, teachers: 50 },
+  //   { month: 'August', students: 280, teachers: 45 },
+  //   { month: 'September', students: 320, teachers: 15 },
+  //   { month: 'October', students: 300, teachers: 10 },
+  //   { month: 'October', students: 50, teachers: 5 },
+  //   { month: 'November', students: 320, teachers: 55 },
+  //   // Add more months as needed
+  // ];
+  const attendance = {
+    students: 3200, // Total number of students
+    teachers: 550, // Total number of teachers
+  };
+
   return (
     <div className="w-full">
       <div className="flex space-x-4">
@@ -90,7 +111,11 @@ export const HomeAdmin: React.FC = () => {
       {/* ============================ */}
       <div className="bg-white my-5 px-4 rounded-lg grid grid-cols-5 gap-4">
         <div className="my-4 col-span-3">
-          <NoticeBoardCard /> </div>
+
+          {/* <AttendanceCard attendance={attendance} /> */}
+          <AttendanceDoughnutChart attendance={attendance} />
+          <NoticeBoardCard />
+        </div>
         <div className="my-4 col-span-2 col-start-4">
           <TeachersCard teachers={teachers} />
           <CalendarComponent events={events} />

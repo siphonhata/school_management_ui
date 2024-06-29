@@ -114,7 +114,7 @@ export const CalendarComponent = ({ events }: CalendarComponentProps) => {
             autoplaySpeed: 3000
         };
 
-        const backgroundColors = ["bg-pink-300", "bg-orange-300", "bg-green-300", "bg-blue-300", "bg-purple-300"];
+        const backgroundColors = ["bg-pink-300", "bg-pink-800", "bg-green-800", "bg-blue-800", "bg-purple-800"];
 
         return (
             <Slider {...settings} className='my-4 bg-gray-50 rounded-lg shadow'>
@@ -122,7 +122,7 @@ export const CalendarComponent = ({ events }: CalendarComponentProps) => {
                     <div key={index} className={`p-4 rounded-lg ${backgroundColors[index % backgroundColors.length]}`}>
                         <div className="flex items-center">
                             <span className='w-4 h-4 bg-green-500 rounded-full mr-2'></span>
-                            <p className="text-sm text-gray-600">{format(event.date, 'MMMM d, yyyy')}</p>
+                            <p className="text-sm text-white">{format(event.date, 'MMMM d, yyyy')}</p>
                         </div>
                         <h3 className="text-2xl font-bold text-white">{event?.title}</h3>
                     </div>
