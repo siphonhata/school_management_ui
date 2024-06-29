@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import {
   ArrowRightStartOnRectangleIcon,
   BellIcon,
@@ -6,14 +6,11 @@ import {
 } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import { logout } from "../../utils";
-import axios from "axios";
-import { api_url } from "../../App";
 import { useFetchUser } from "../Common";
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, image, loading, error } = useFetchUser();
-  // const url = process.env.REACT_APP_API_URL
+  const { user, image } = useFetchUser();
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
@@ -38,7 +35,9 @@ export const Header = () => {
         onClick={toggleDropdown}
         className="flex items-center rounded-full p-2"
       >
+       
         {image ? (
+           
           <img
             src={`data:image/png;base64,${image}`}
             alt="User Avatar"

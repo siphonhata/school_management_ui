@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, RouteProps, Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import { isAuthenticated } from './utils';
 
 

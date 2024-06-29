@@ -12,7 +12,7 @@ export const ProfilePage = () => {
   const [isPasswordOpen, setIsPasswordOpen] = useState(false);
   const [isSchoolOpen, setIsSchoolOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { user, loading: load } = useFetchUser();
+  const { user, image, loading: load } = useFetchUser();
 
   const [formData, setFormData] = useState<any>({
     userInfo: {},
@@ -22,7 +22,6 @@ export const ProfilePage = () => {
   });
   const nav = useNavigate();
 
-  console.log("Form Data => ", formData)
   
   const handleChange = (e: any, formSection: string) => {
     const { name, value } = e.target;
@@ -54,7 +53,7 @@ export const ProfilePage = () => {
 
   return (
     <div className="mt-4 ">
-      <ProfileView user={user} loading={load} />
+      <ProfileView user={user} image={image} loading={load} />
 
       <div>
         {user && user.role === "ADMIN" && (

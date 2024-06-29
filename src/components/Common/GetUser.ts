@@ -26,6 +26,6 @@ export const useFetchUser = () => {
 
         fetchUser();
     }, []);
-
+    console.log("IMAGE", image)
     return { user, image, loading, error };
 };
