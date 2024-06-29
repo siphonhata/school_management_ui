@@ -4,7 +4,7 @@ import React from 'react';
 
 export const TeachersCard = ({ teachers }: any) => {
     return (
-        <div className="max-w-sm p-4 bg-gray-50 rounded-lg shadow-md">
+        <div className="p-4 bg-gray-50 rounded-lg shadow-md">
             <div className="flex justify-between items-center mb-4 text-gray-800">
                 <h2 className="text-xl font-bold">Teachers List</h2>
                 <p className="hover:underline text-gray-300 hover:text-gray-500">See more</p>
