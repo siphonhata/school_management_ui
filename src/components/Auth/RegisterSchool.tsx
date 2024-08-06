@@ -20,15 +20,33 @@ export const RegisterSchoolForm = () => {
 
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [schoolPhoneNumber, setSchoolPhoneNumber] = useState('');
+  const [repPhoneNumber, setRepPhoneNumber] = useState('');
   const navigate = useNavigate();
 
   const handleChange = (e: any) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target; 
     setFormData({
       ...formData,
       [name]: value,
     });
   };
+  const handleChangePhoneNumber = (setter: any) => (e: any) => {
+    const value = e.target.value.replace(/[^0-9]/g, '').slice(0, 10);
+    setter(value);
+  };
+
+  // Generic display value generator
+  const generateDisplayValue = (phoneNumber: any) => {
+    const numUnderscores = 10 - phoneNumber.length;
+    return '_'.repeat(numUnderscores) + phoneNumber;
+  };
+
+  ///////
+  
+
+ 
+
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -42,7 +60,7 @@ export const RegisterSchoolForm = () => {
     setIsLoading(true);
 
     try {
-      // Add logic to handle form submission
+      
       const response = await axios.post(`${api_url}/registerAccount`, formData);
       console.log(response.data);
       if (response.data.success) {
@@ -112,8 +130,8 @@ export const RegisterSchoolForm = () => {
             <input
               type="tel"
               name="schoolPhoneNumber"
-              value={formData.schoolPhoneNumber}
-              onChange={handleChange}
+              value={generateDisplayValue(schoolPhoneNumber)}
+              onChange={handleChangePhoneNumber(setSchoolPhoneNumber)}
               placeholder="School Phone Number"
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             />
@@ -201,8 +219,8 @@ export const RegisterSchoolForm = () => {
           <input
             type="tel"
             name="representativePhoneNumber"
-            value={formData.representativePhoneNumber}
-            onChange={handleChange}
+            value={generateDisplayValue(repPhoneNumber)}
+            onChange={handleChangePhoneNumber(setRepPhoneNumber)}
             placeholder="Representative Phone Number"
             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
           />
