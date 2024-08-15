@@ -36,17 +36,10 @@ export const RegisterSchoolForm = () => {
     setter(value);
   };
 
-  // Generic display value generator
   const generateDisplayValue = (phoneNumber: any) => {
     const numUnderscores = 10 - phoneNumber.length;
     return '_'.repeat(numUnderscores) + phoneNumber;
   };
-
-  ///////
-  
-
- 
-
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
