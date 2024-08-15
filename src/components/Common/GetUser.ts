@@ -12,7 +12,6 @@ export const useFetchUser = () => {
         const fetchUser = async () => {
             try {
                 const response = await axios.get(`${api_url}/getuser`);
-                console.log("Common Response", response)
                 if (response.data.success) {
                     setUser(response.data.user);
                     setImage(response.data.photo);
