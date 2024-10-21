@@ -1,8 +1,39 @@
-import React from 'react';
-
+import { useState } from 'react';
+import axios from "axios";
+import { api_url } from "../../App";
 
 
 export const TeachersCard = ({ teachers }: any) => {
+    const [email, setEmail] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+
+    const handleSubmit = async (event: any) => {
+        event.preventDefault();
+        setIsLoading(true);
+        if (!email) {
+            console.log("Please fill in all fields");
+            return;
+        }
+        try {
+            //@ts-ignore
+            const response = await axios.post(`${api_url}/invite`, {
+                email,
+                role: "TEACHER"
+            });
+
+            if (response?.data.success) {
+                console.log(response.data.message)
+            }
+            else {
+                console.log(response?.data.message);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+        setEmail('');
+        setIsLoading(false);
+    };
+
     return (
         <div className="p-4 bg-gray-50 rounded-lg shadow-md">
             <div className="flex justify-between items-center mb-4 text-gray-800">
@@ -21,15 +52,25 @@ export const TeachersCard = ({ teachers }: any) => {
             </div>
             <p className="text-md font-bold text-gray-800 m-2">Add Teachers</p>
             <div className="flex border rounded-md bg-white overflow-hidden">
-                <input
-                    type="email"
-                    placeholder="Invite with email"
-                    className="w-full p-2 outline-none focus:outline-none"
-                />
-                <button className="p-2 px-4 font-bold bg-gray-900 rounded-md text-white hover:bg-gray-800">
-                    Invite
-                </button>
-            </div>
+            <input
+                type="email"
+                placeholder="Invite with email"
+                className="w-full p-2 outline-none focus:outline-none"
+                name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+            />
+            <button
+                type="button"
+                disabled={isLoading}
+                className={`p-2 px-4 font-bold bg-gray-900 rounded-md text-white ${
+                    isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-800'
+                }`}
+                onClick={handleSubmit}
+            >
+                {isLoading ? 'Inviting...' : 'Invite'}
+            </button>
+        </div>
 
         </div>
     );
