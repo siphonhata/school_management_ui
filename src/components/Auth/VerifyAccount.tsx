@@ -91,7 +91,7 @@ export const VerifyAccount = () => {
                     <div className="mb-4">
                         <button
                             type="submit"
-                            disabled={isLoading}
+                            disabled={isLoading} 
                             className={`w-full text-white px-3 py-2 rounded-md bg-gray-900 ${
                                 isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-800'
                             }`}
