@@ -43,19 +43,19 @@ export const HomeAdmin: React.FC = () => {
       id: 1,
       icon: <FaUserGraduate className="mr-3 h-6 w-6 text-gray-900" />,
       label: 'Total Students',
-      value: 1200, // Replace this with stats.totalStudents
+      value: stats.totalStudents,
     },
     {
       id: 2,
       icon: <FaChalkboardTeacher className="mr-3 h-6 w-6 text-gray-900" />,
       label: 'Total Teachers',
-      value: 80, // Replace this with stats.totalTeachers
+      value: stats.totalTeachers,
     },
     {
       id: 3,
       icon: <FaUsers className="mr-3 h-6 w-6 text-gray-900" />,
       label: 'Total Parents',
-      value: 2400, // Replace this with stats.totalParents
+      value: stats.totalParents,
     },
     {
       id: 4,

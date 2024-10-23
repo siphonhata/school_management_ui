@@ -1,22 +1,23 @@
 import axios from "axios";
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { api_url } from "../../App";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { CAlert } from "@coreui/react";
 
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState({ message: "", visible: false });
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   const nav = useNavigate();
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    
+
     if (!email || !password) {
-      setErrorMessage("Please fill in all fields");
+      setErrorMessage({ message: "Please fill in all fields", visible: true });
       return;
     }
     try {
@@ -25,27 +26,27 @@ export const Login = () => {
         email,
         password,
       });
-      
+
       if (response?.data.success) {
         if (response.data.token) {
           localStorage.setItem("_Ey_", response.data.token);
           nav("/dashboard/dashboard");
         }
-      } 
+      }
       else {
-        setErrorMessage(response?.data.message);
+        setErrorMessage({ message: response?.data.message, visible: true });
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {
         if (error.response?.status === 404) {
-          setErrorMessage("User does not exist");
+          setErrorMessage({ message: "User does not exist", visible: true });
         } else if (error.response?.status === 401) {
-          setErrorMessage("Invalid credentials.");
+          setErrorMessage({ message: "Invalid credentials.", visible: true });
         } else {
-          setErrorMessage("An error occurred. Please try again.");
+          setErrorMessage({ message: "An error occurred. Please try again.", visible: true });
         }
       } else {
-        setErrorMessage("An unexpected error occurred.");
+        setErrorMessage({ message: "An unexpected error occurred.", visible: true });
       }
     }
   };
@@ -54,11 +55,27 @@ export const Login = () => {
     setPasswordVisible(!passwordVisible);
   };
 
+  useEffect(() => {
+    if (errorMessage.visible) {
+      const timer = setTimeout(() => {
+        setErrorMessage(prev => ({ ...prev, visible: false }));
+      }, 4000);
+
+      return () => clearTimeout(timer);
+    }
+  },  [errorMessage]);
 
   return (
     <div className="flex justify-center items-center h-screen bg-white">
-      <div className=" m-20 p-6 rounded-lg z-20 w-full ">
-        <h1 className=" text-center text-2xl font-bold mb-4">Login</h1>
+      <div className="m-20 p-6 rounded-lg z-20 w-full">
+        <h1 className="text-center text-2xl font-bold mb-4">Login</h1>
+        {/* Basic Error Message Display */}
+        {errorMessage.visible && (
+          <div className="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
+            {errorMessage.message}
+          </div>
+        )}
+        
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
@@ -102,7 +119,7 @@ export const Login = () => {
               </span>
             </div>
           </div>
-          <Link to="/forgot-password" className=" text-gray-900 hover:underline">
+          <Link to="/forgot-password" className="text-gray-900 hover:underline">
             Forgot Password
           </Link>
           <div className="my-4">
@@ -114,7 +131,6 @@ export const Login = () => {
             </button>
           </div>
         </form>
-        {errorMessage && <p className="text-red-500 text-sm">{errorMessage}</p>}
         <p className="text-center text-sm text-gray-600">
           Don't have an account?{" "}
           <Link to="/register" className="text-gray-900 hover:underline">
