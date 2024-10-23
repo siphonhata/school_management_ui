@@ -9,15 +9,11 @@ export const ForgotPassword = () => {
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
-        // Handle forgot password logic here
-
+        
         try {
             const response = await axios.post(`${api_url}/forgot-password`, {email});
             
             if (response.data.success) {
-            //   setLoading(false);
-            //   setIsOpen(!isOpen);
-            //   nav("/dashboard/profile");
             console.log("EMAIL SENT")
             }
           } 

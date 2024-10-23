@@ -36,7 +36,7 @@ const students = [
         class: 'Class 12D'
     }
 ];
-
+ 
 
 export const StudentsComponent = () => {
     const [searchTerm, setSearchTerm] = useState('');
