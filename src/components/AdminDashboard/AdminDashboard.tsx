@@ -29,6 +29,7 @@ import {
     Cog6ToothIcon
   } from "@heroicons/react/24/solid";
 import { TimetableManagement } from "./TimeTableManagement";
+import { StaffManagement } from "./StaffManagement";
   
   // Group your navigation items
   const navItems = [
@@ -45,9 +46,9 @@ import { TimetableManagement } from "./TimeTableManagement";
   
     // Administration
     { path: 'attendance', name: 'Attendance', icon: <ClipboardIcon className="h-5 w-5" />, Component: <AttendanceDashboard />, category: 'Administration' },
-    { path: 'staff', name: 'Staff', icon: <UsersIcon className="h-5 w-5" />, Component: <ExamManagement />, category: 'Administration' },
-    { path: 'documents', name: 'Documents', icon: <DocumentIcon className="h-5 w-5" />, Component: <ExamManagement />, category: 'Administration' },
-    { path: 'inventory', name: 'Inventory', icon: <CubeIcon className="h-5 w-5" />, Component: <ExamManagement />, category: 'Administration' },
+    { path: 'staff', name: 'Staff', icon: <UsersIcon className="h-5 w-5" />, Component: <StaffManagement />, category: 'Administration' },
+    // { path: 'documents', name: 'Documents', icon: <DocumentIcon className="h-5 w-5" />, Component: <ExamManagement />, category: 'Administration' },
+    // { path: 'inventory', name: 'Inventory', icon: <CubeIcon className="h-5 w-5" />, Component: <ExamManagement />, category: 'Administration' },
   
     // Facilities
     { path: 'library', name: 'Library', icon: <BookmarkIcon className="h-5 w-5" />, Component: <ExamManagement />, category: 'Facilities' },
