@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@coreui/react':
+        specifier: ^5.4.0
+        version: 5.4.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@headlessui/react':
         specifier: ^2.0.3
         version: 2.2.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -822,6 +825,17 @@ packages:
   '@bcoe/v8-coverage@0.2.3':
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
 
+  '@coreui/coreui@5.2.0':
+    resolution: {integrity: sha512-DZLWzPIZP3KTNgcaRXny/7lcQm0rDMrheu3VsWpgbln5rUuJwxdopwhTSnOryVyCwjlDbs3Z8ZfIzOeBXNC4GA==}
+    peerDependencies:
+      '@popperjs/core': ^2.11.8
+
+  '@coreui/react@5.4.1':
+    resolution: {integrity: sha512-ycO1XEGWqxa1Yx+1FK9wieEKVxSP8tS9QwgmtyEifZ6ArA6AvG8C1rPBuVb3FNE1SXwSEc50+zmy62QfRLtG0Q==}
+    peerDependencies:
+      react: '>=17'
+      react-dom: '>=17'
+
   '@csstools/normalize.css@12.1.1':
     resolution: {integrity: sha512-YAYeJ+Xqh7fUou1d1j9XHl44BmsuThiTr4iNrgCQ3J27IbhXsxXDGZ1cXv8Qvs99d4rBbLiSKy3+WZiet32PcQ==}
 
@@ -1170,6 +1184,9 @@ packages:
         optional: true
       webpack-plugin-serve:
         optional: true
+
+  '@popperjs/core@2.11.8':
+    resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
 
   '@react-aria/focus@3.19.0':
     resolution: {integrity: sha512-hPF9EXoUQeQl1Y21/rbV2H4FdUR2v+4/I0/vB+8U3bT1CJ+1AFj1hc/rqx2DqEwDlEwOHN+E4+mRahQmlybq0A==}
@@ -6819,6 +6836,18 @@ snapshots:
 
   '@bcoe/v8-coverage@0.2.3': {}
 
+  '@coreui/coreui@5.2.0(@popperjs/core@2.11.8)':
+    dependencies:
+      '@popperjs/core': 2.11.8
+
+  '@coreui/react@5.4.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@coreui/coreui': 5.2.0(@popperjs/core@2.11.8)
+      '@popperjs/core': 2.11.8
+      prop-types: 15.8.1
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
   '@csstools/normalize.css@12.1.1': {}
 
   '@csstools/postcss-cascade-layers@1.1.1(postcss@8.4.49)':
@@ -7328,6 +7357,8 @@ snapshots:
     optionalDependencies:
       type-fest: 0.21.3
       webpack-dev-server: 4.15.2(webpack@5.97.1)
+
+  '@popperjs/core@2.11.8': {}
 
   '@react-aria/focus@3.19.0(react@18.3.1)':
     dependencies:

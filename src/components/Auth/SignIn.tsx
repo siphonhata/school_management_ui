@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { api_url } from "../../App";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { CAlert } from "@coreui/react";
 
 
 export const Login = () => {
