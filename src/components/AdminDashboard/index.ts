@@ -1,5 +1,5 @@
 export * from './AdminDashboard';
-export * from './Students';
+export * from './StudentsManagement/Students';
 export * from './TeacherSummary';
 export * from './NoticeBoard';
 export * from './Calendar';

@@ -1,18 +1,18 @@
 import { HomeIcon, UserGroupIcon, UserIcon, BookOpenIcon, ClipboardIcon, AcademicCapIcon, CreditCardIcon } from "@heroicons/react/24/solid";
 import { Dashboard, DashboardLayout } from "../Dashboard"
 import { ProfilePage } from "../Profile";
-import { StudentsComponent } from "./Students";
 import { TeachersComponent } from "./Teachers";
 import { AttendanceComponent } from "./Attendance";
 import { CourseComponent } from "./Courses";
 import { ExamComponent } from "./Exam";
 import { PaymentComponent } from "./Payment";
 import { HomeAdmin } from "./Home";
+import StudentsList from "./StudentsManagement/Students";
 
 const navItems = [
     { path: 'dashboard', name: 'Dashboard', icon: <HomeIcon className="h-5 w-5" />, Component: <><HomeAdmin /> </> },
     { path: 'profile', name: 'Profile', icon: <CreditCardIcon className="h-5 w-5" />, Component: <><ProfilePage /> </> },
-    { path: 'students', name: 'Students', icon: <UserGroupIcon className="h-5 w-5" />, Component: <><StudentsComponent /></> },
+    { path: 'students', name: 'Students', icon: <UserGroupIcon className="h-5 w-5" />, Component: <><StudentsList /></> },
     { path: 'teachers', name: 'Teachers', icon: <UserIcon className="h-5 w-5" />, Component: <><TeachersComponent /></> },
     { path: 'attendance', name: 'Attendance', icon: <ClipboardIcon className="h-5 w-5" />, Component: <><AttendanceComponent /></> },
     { path: 'courses', name: 'Courses', icon: <BookOpenIcon className="h-5 w-5" />, Component: <><CourseComponent /></> },
