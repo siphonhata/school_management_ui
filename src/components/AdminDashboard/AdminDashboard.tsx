@@ -31,6 +31,7 @@ import {
 import { TimetableManagement } from "./TimeTableManagement";
 import { StaffManagement } from "./StaffManagement";
 import { LibraryManagement } from "./LibraryManagement";
+import TransportManagement from "./TransportManagement/TransportView";
   
   // Group your navigation items
   const navItems = [
@@ -53,7 +54,7 @@ import { LibraryManagement } from "./LibraryManagement";
   
     // Facilities
     { path: 'library', name: 'Library', icon: <BookmarkIcon className="h-5 w-5" />, Component: <LibraryManagement />, category: 'Facilities' },
-    { path: 'transport', name: 'Transport', icon: <TruckIcon className="h-5 w-5" />, Component: <ExamManagement />, category: 'Facilities' },
+    { path: 'transport', name: 'Transport', icon: <TruckIcon className="h-5 w-5" />, Component: <TransportManagement />, category: 'Facilities' },
   
     // Communication
     { path: 'communications', name: 'Messages', icon: <ChatBubbleLeftIcon className="h-5 w-5" />, Component: <ExamManagement />, category: 'Communication' },
