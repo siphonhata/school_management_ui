@@ -28,6 +28,7 @@ import {
     DocumentIcon,
     Cog6ToothIcon
   } from "@heroicons/react/24/solid";
+import { TimetableManagement } from "./TimeTableManagement";
   
   // Group your navigation items
   const navItems = [
@@ -40,7 +41,7 @@ import {
     { path: 'teachers', name: 'Teachers', icon: <UserIcon className="h-5 w-5" />, Component: <TeachersComponent />, category: 'Academic' },
     { path: 'courses', name: 'Courses', icon: <BookOpenIcon className="h-5 w-5" />, Component: <ClassManagement />, category: 'Academic' },
     { path: 'exams', name: 'Exams', icon: <AcademicCapIcon className="h-5 w-5" />, Component: <ExamManagement />, category: 'Academic' },
-    { path: 'timetable', name: 'Timetable', icon: <CalendarIcon className="h-5 w-5" />, Component: <ExamManagement />, category: 'Academic' },
+    { path: 'timetable', name: 'Timetable', icon: <CalendarIcon className="h-5 w-5" />, Component: <TimetableManagement />, category: 'Academic' },
   
     // Administration
     { path: 'attendance', name: 'Attendance', icon: <ClipboardIcon className="h-5 w-5" />, Component: <AttendanceDashboard />, category: 'Administration' },
