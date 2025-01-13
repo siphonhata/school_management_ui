@@ -33,6 +33,7 @@ import { StaffManagement } from "./StaffManagement";
 import { LibraryManagement } from "./LibraryManagement";
 import TransportManagement from "./TransportManagement/TransportView";
 import { EventManagement } from "./EventsManagement";
+import { ReportsManagement } from "./Reports";
   
   // Group your navigation items
   const navItems = [
@@ -63,7 +64,7 @@ import { EventManagement } from "./EventsManagement";
   
     // Finance
     // { path: 'payments', name: 'Payments', icon: <CreditCardIcon className="h-5 w-5" />, Component: <PaymentComponent />, category: 'Finance' },
-    { path: 'reports', name: 'Reports', icon: <ChartBarIcon className="h-5 w-5" />, Component: <ExamManagement />, category: 'Finance' },
+    { path: 'reports', name: 'Reports', icon: <ChartBarIcon className="h-5 w-5" />, Component: <ReportsManagement />, category: 'Finance' },
   
     // System
     // { path: 'settings', name: 'Settings', icon: <Cog6ToothIcon className="h-5 w-5" />, Component: <ExamManagement />, category: 'System' }
