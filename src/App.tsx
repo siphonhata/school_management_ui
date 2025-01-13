@@ -16,10 +16,10 @@ const App: React.FC = () => {
         <Route path="/verify-account" element={<AuthLayout />} />
         <Route path="/forgot-password" element={<AuthLayout />} />
         <Route path="/reset-password" element={<AuthLayout />} />
-
-        <Route element={<PrivateRoute />}>
+        <Route path="/dashboard/*" element={<AdminDashboard />} />
+        {/* <Route element={<PrivateRoute />}>
           <Route path="/dashboard/*" element={<AdminDashboard />} />
-        </Route>
+        </Route> */}
       </Routes>
     </Router>
   );
