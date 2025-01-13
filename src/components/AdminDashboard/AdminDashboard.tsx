@@ -32,6 +32,7 @@ import { TimetableManagement } from "./TimeTableManagement";
 import { StaffManagement } from "./StaffManagement";
 import { LibraryManagement } from "./LibraryManagement";
 import TransportManagement from "./TransportManagement/TransportView";
+import { EventManagement } from "./EventsManagement";
   
   // Group your navigation items
   const navItems = [
@@ -57,15 +58,15 @@ import TransportManagement from "./TransportManagement/TransportView";
     { path: 'transport', name: 'Transport', icon: <TruckIcon className="h-5 w-5" />, Component: <TransportManagement />, category: 'Facilities' },
   
     // Communication
-    { path: 'communications', name: 'Messages', icon: <ChatBubbleLeftIcon className="h-5 w-5" />, Component: <ExamManagement />, category: 'Communication' },
-    { path: 'events', name: 'Events', icon: <CalendarDaysIcon className="h-5 w-5" />, Component: <ExamManagement />, category: 'Communication' },
+    // { path: 'communications', name: 'Messages', icon: <ChatBubbleLeftIcon className="h-5 w-5" />, Component: <ExamManagement />, category: 'Communication' },
+    { path: 'events', name: 'Events', icon: <CalendarDaysIcon className="h-5 w-5" />, Component: <EventManagement />, category: 'Communication' },
   
     // Finance
-    { path: 'payments', name: 'Payments', icon: <CreditCardIcon className="h-5 w-5" />, Component: <PaymentComponent />, category: 'Finance' },
+    // { path: 'payments', name: 'Payments', icon: <CreditCardIcon className="h-5 w-5" />, Component: <PaymentComponent />, category: 'Finance' },
     { path: 'reports', name: 'Reports', icon: <ChartBarIcon className="h-5 w-5" />, Component: <ExamManagement />, category: 'Finance' },
   
     // System
-    { path: 'settings', name: 'Settings', icon: <Cog6ToothIcon className="h-5 w-5" />, Component: <ExamManagement />, category: 'System' }
+    // { path: 'settings', name: 'Settings', icon: <Cog6ToothIcon className="h-5 w-5" />, Component: <ExamManagement />, category: 'System' }
   ];
 
 export const AdminDashboard = () => {
