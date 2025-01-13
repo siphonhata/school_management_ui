@@ -1,7 +1,7 @@
 import { HomeIcon, UserGroupIcon, UserIcon, BookOpenIcon, ClipboardIcon, AcademicCapIcon, CreditCardIcon } from "@heroicons/react/24/solid";
 import { Dashboard, DashboardLayout } from "../Dashboard"
 import { ProfilePage } from "../Profile";
-import { TeachersComponent } from "./Teachers";
+import { TeachersComponent } from "./TeacherManagement/Teachers";
 import { AttendanceComponent } from "./Attendance";
 import { CourseComponent } from "./Courses";
 import { ExamComponent } from "./Exam";
