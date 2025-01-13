@@ -30,6 +30,7 @@ import {
   } from "@heroicons/react/24/solid";
 import { TimetableManagement } from "./TimeTableManagement";
 import { StaffManagement } from "./StaffManagement";
+import { LibraryManagement } from "./LibraryManagement";
   
   // Group your navigation items
   const navItems = [
@@ -51,7 +52,7 @@ import { StaffManagement } from "./StaffManagement";
     // { path: 'inventory', name: 'Inventory', icon: <CubeIcon className="h-5 w-5" />, Component: <ExamManagement />, category: 'Administration' },
   
     // Facilities
-    { path: 'library', name: 'Library', icon: <BookmarkIcon className="h-5 w-5" />, Component: <ExamManagement />, category: 'Facilities' },
+    { path: 'library', name: 'Library', icon: <BookmarkIcon className="h-5 w-5" />, Component: <LibraryManagement />, category: 'Facilities' },
     { path: 'transport', name: 'Transport', icon: <TruckIcon className="h-5 w-5" />, Component: <ExamManagement />, category: 'Facilities' },
   
     // Communication
